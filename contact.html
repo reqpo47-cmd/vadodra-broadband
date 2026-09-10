@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Vadodra Broadband Wifi Wala</title>
+  <style>
+    :root { --bg-dark: #05070f; --card-bg: #0d1222; --cyan: #00f0ff; --purple: #7000ff; --green: #00ff66; --text: #e2e8f0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
+    body { background-color: var(--bg-dark); color: var(--text); overflow-x: hidden; }
+
+    nav { position: sticky; top: 0; background: rgba(5, 7, 15, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0, 240, 255, 0.2); display: flex; justify-content: space-between; align-items: center; padding: 18px 8%; z-index: 1000; }
+    .logo { font-size: 1.4rem; font-weight: 900; color: #fff; text-shadow: 0 0 10px var(--cyan); }
+    .logo span { color: var(--cyan); }
+    .nav-links { display: flex; gap: 25px; list-style: none; }
+    .nav-links a { color: var(--text); text-decoration: none; font-size: 0.95rem; font-weight: 600; transition: 0.3s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--cyan); text-shadow: 0 0 8px var(--cyan); }
+
+    .btn-glow { background: linear-gradient(135deg, var(--cyan), var(--purple)); color: #fff; padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: bold; border: none; cursor: pointer; box-shadow: 0 0 15px rgba(0, 240, 255, 0.4); width: 100%; font-size: 1rem; }
+
+    .form-container { max-width: 500px; margin: 50px auto; background: var(--card-bg); padding: 40px; border-radius: 16px; border: 1px solid rgba(0, 240, 255, 0.3); box-shadow: 0 0 30px rgba(0, 240, 255, 0.15); }
+    .form-container h1 { font-size: 2rem; color: #fff; text-align: center; margin-bottom: 25px; text-shadow: 0 0 10px var(--cyan); }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; margin-bottom: 8px; color: #94a3b8; font-size: 0.9rem; }
+    .form-group input, .form-group select { width: 100%; padding: 12px; border-radius: 8px; background: #05070f; border: 1px solid rgba(0, 240, 255, 0.3); color: #fff; font-size: 1rem; }
+
+    .whatsapp-btn { position: fixed; bottom: 25px; right: 25px; background: var(--green); color: #000; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 30px; box-shadow: 0 0 20px rgba(0, 255, 102, 0.6); text-decoration: none; z-index: 9999; }
+    footer { text-align: center; padding: 40px; border-top: 1px solid rgba(255,255,255,0.05); color: #64748b; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">VADODRA<span>BROADBAND</span></div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="plans.html">Internet Plans</a></li>
+      <li><a href="services.html">Our Services</a></li>
+      <li><a href="coverage.html">Coverage Area</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="contact.html" class="active">Contact Us</a></li>
+    </ul>
+    <a href="contact.html" class="btn-glow" style="width: auto;">Get Connection</a>
+  </nav>
+
+  <div class="form-container">
+    <h1>GET NEW CONNECTION</h1>
+    <form onsubmit="sendToWhatsApp(event)">
+      <div class="form-group">
+        <label>Your Full Name</label>
+        <input type="text" id="name" placeholder="Enter your name" required>
+      </div>
+      <div class="form-group">
+        <label>Area / Location in Vadodara</label>
+        <input type="text" id="area" placeholder="e.g. Gotri, Alkapuri" required>
+      </div>
+      <div class="form-group">
+        <label>Select Plan</label>
+        <select id="plan">
+          <option>40 Mbps - Starter Pack (₹399/mo)</option>
+          <option>100 Mbps - Gamer Turbo (₹699/mo)</option>
+          <option>200 Mbps - Streamer Max (₹999/mo)</option>
+          <option>300 Mbps - Giga Ultra (₹1499/mo)</option>
+        </select>
+      </div>
+      <button type="submit" class="btn-glow">Submit & Request via WhatsApp 🚀</button>
+    </form>
+  </div>
+
+  <a href="https://wa.me/?text=Hi%20Vadodra%20Broadband!" class="whatsapp-btn" target="_blank">💬</a>
+
+  <footer>
+    <p>&copy; 2026 Vadodra Broadband Wifi Wala.</p>
+  </footer>
+
+  <script>
+    function sendToWhatsApp(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const area = document.getElementById('area').value;
+      const plan = document.getElementById('plan').value;
+      const text = `Hi Vadodra Broadband Wifi Wala, I want a new connection!%0AName: ${name}%0AArea: ${area}%0APlan Selected: ${plan}`;
+      window.open(`https://wa.me/?text=${text}`, '_blank');
+    }
+  </script>
+
+</body>
+</html>
