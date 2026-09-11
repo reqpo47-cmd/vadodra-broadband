@@ -3,17 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vadodara Broadband - High Speed Fiber Internet</title>
+  <title>Vadodara Broadband - Next-Gen High Speed Fiber</title>
   <style>
     :root {
       --bg-dark: #030712;
-      --card-bg: rgba(15, 23, 42, 0.75);
+      --card-bg: rgba(15, 23, 42, 0.7);
       --accent-cyan: #00f2fe;
       --accent-blue: #4facfe;
       --accent-purple: #7928ca;
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
-      --border-glow: rgba(0, 242, 254, 0.25);
     }
 
     * {
@@ -31,8 +30,8 @@
       flex-direction: column;
       overflow-x: hidden;
       background-image: 
-        radial-gradient(circle at 10% 20%, rgba(0, 242, 254, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 90% 80%, rgba(121, 40, 202, 0.1) 0%, transparent 40%);
+        radial-gradient(circle at 15% 15%, rgba(0, 242, 254, 0.1) 0%, transparent 45%),
+        radial-gradient(circle at 85% 85%, rgba(121, 40, 202, 0.12) 0%, transparent 45%);
     }
 
     canvas#circuit-bg {
@@ -45,7 +44,7 @@
       pointer-events: none;
     }
 
-    /* Navbar Header */
+    /* Navigation Header */
     nav {
       display: flex;
       justify-content: space-between;
@@ -110,178 +109,220 @@
       box-shadow: 0 0 30px rgba(0, 242, 254, 0.7);
     }
 
-    /* Hero Banner */
+    /* Hero Section */
     .hero {
       text-align: center;
-      padding: 70px 20px 40px;
-      max-width: 900px;
+      padding: 80px 20px 40px;
+      max-width: 950px;
       margin: 0 auto;
     }
 
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 242, 254, 0.08);
+      border: 1px solid rgba(0, 242, 254, 0.25);
+      padding: 6px 16px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      margin-bottom: 24px;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--accent-cyan);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent-cyan);
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 242, 254, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 242, 254, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 242, 254, 0); }
+    }
+
     .hero h1 {
-      font-size: 46px;
+      font-size: 52px;
       font-weight: 900;
-      letter-spacing: -0.5px;
-      line-height: 1.2;
-      background: linear-gradient(180deg, #ffffff 30%, var(--accent-cyan) 100%);
+      letter-spacing: -1px;
+      line-height: 1.15;
+      background: linear-gradient(180deg, #ffffff 40%, var(--accent-cyan) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
 
     .hero p {
       color: var(--text-muted);
-      font-size: 17px;
+      font-size: 18px;
       line-height: 1.6;
-      margin-bottom: 28px;
+      margin-bottom: 35px;
     }
 
-    /* Section Header */
-    .section-title-wrap {
-      text-align: center;
-      margin: 20px 0 45px;
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      align-items: center;
     }
 
-    .section-title {
-      font-size: 32px;
-      font-weight: 800;
-      letter-spacing: 0.5px;
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       color: #fff;
-      display: inline-block;
-      position: relative;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 15px;
+      text-decoration: none;
+      transition: 0.3s;
     }
 
-    .section-title::after {
-      content: '';
-      display: block;
-      width: 60px;
-      height: 4px;
-      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue));
-      margin: 10px auto 0;
-      border-radius: 2px;
+    .btn-secondary:hover {
+      border-color: var(--accent-cyan);
+      background: rgba(0, 242, 254, 0.1);
     }
 
-    /* Pricing Section */
-    .plans-container {
-      max-width: 1200px;
-      margin: 0 auto 80px;
+    /* Live Speed Test Widget Section */
+    .speedtest-section {
+      max-width: 900px;
+      margin: 50px auto 80px;
       padding: 0 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 30px;
-      align-items: stretch;
     }
 
-    .plan-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-glow);
-      border-radius: 24px;
-      padding: 35px 28px;
-      position: relative;
+    .speedtest-card {
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.85) 0%, rgba(3, 7, 18, 0.9) 100%);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      border-radius: 28px;
+      padding: 40px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0, 242, 254, 0.1);
       backdrop-filter: blur(16px);
+      position: relative;
+    }
+
+    .gauge-container {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      margin: 20px auto 30px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    .plan-card:hover {
-      transform: translateY(-8px);
-      border-color: var(--accent-cyan);
-      box-shadow: 0 15px 40px rgba(0, 242, 254, 0.2);
-    }
-
-    .plan-card.popular {
-      border: 2px solid var(--accent-cyan);
-      box-shadow: 0 10px 35px rgba(0, 242, 254, 0.25);
-      background: linear-gradient(180deg, rgba(15, 23, 42, 0.9) 0%, rgba(5, 11, 20, 0.95) 100%);
-    }
-
-    .badge {
-      position: absolute;
-      top: -14px;
-      right: 24px;
-      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
-      color: #000;
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      padding: 6px 14px;
-      border-radius: 20px;
-      box-shadow: 0 4px 15px rgba(0, 242, 254, 0.4);
-    }
-
-    .plan-header {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      padding-bottom: 20px;
-      margin-bottom: 24px;
-    }
-
-    .plan-name {
-      font-size: 22px;
-      font-weight: 800;
-      color: #fff;
-      margin-bottom: 8px;
-    }
-
-    .plan-speed-tag {
-      display: inline-flex;
       align-items: center;
-      gap: 6px;
-      background: rgba(0, 242, 254, 0.1);
-      color: var(--accent-cyan);
-      padding: 4px 12px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 700;
-      margin-bottom: 16px;
-      border: 1px solid rgba(0, 242, 254, 0.2);
+      justify-content: center;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 242, 254, 0.05) 0%, transparent 70%);
+      border: 3px dashed rgba(0, 242, 254, 0.3);
+      box-shadow: inset 0 0 30px rgba(0, 242, 254, 0.15);
     }
 
-    .plan-price {
-      font-size: 42px;
+    .speed-number {
+      font-size: 54px;
       font-weight: 900;
       color: #fff;
+      text-shadow: 0 0 20px var(--accent-cyan);
       line-height: 1;
     }
 
-    .plan-price span {
-      font-size: 15px;
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    .plan-features {
-      list-style: none;
-      margin-bottom: 30px;
-      flex-grow: 1;
-    }
-
-    .plan-features li {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: #cbd5e1;
+    .speed-unit {
       font-size: 14px;
-      margin-bottom: 14px;
-      line-height: 1.4;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      letter-spacing: 2px;
+      margin-top: 4px;
     }
 
-    .plan-features li svg {
-      width: 18px;
-      height: 18px;
-      fill: var(--accent-cyan);
-      flex-shrink: 0;
+    .speed-metrics {
+      display: flex;
+      justify-content: space-around;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 25px;
+      margin-top: 20px;
     }
 
-    .btn-plan {
-      width: 100%;
+    .metric-item {
       text-align: center;
-      padding: 14px;
-      font-size: 15px;
+    }
+
+    .metric-val {
+      font-size: 20px;
       font-weight: 800;
-      border-radius: 12px;
+      color: #fff;
+    }
+
+    .metric-lbl {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    /* Features Grid */
+    .features-section {
+      max-width: 1100px;
+      margin: 0 auto 90px;
+      padding: 0 20px;
+    }
+
+    .section-head {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-head h2 {
+      font-size: 34px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .section-head p {
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 25px;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 32px;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(12px);
+    }
+
+    .feature-card:hover {
+      border-color: var(--accent-cyan);
+      transform: translateY(-6px);
+      box-shadow: 0 12px 35px rgba(0, 242, 254, 0.15);
+    }
+
+    .feature-icon {
+      font-size: 36px;
+      margin-bottom: 18px;
+    }
+
+    .feature-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .feature-desc {
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.6;
     }
 
     /* Modal */
@@ -362,112 +403,80 @@
       <li><a href="about.html">About Us</a></li>
       <li><a href="contact.html">Contact Us</a></li>
     </ul>
-    <a href="contact.html" class="btn-glow">Get Connection</a>
+    <button class="btn-glow" onclick="showAdminModal('General Connection Request')">Get Connection</button>
   </nav>
 
-  <!-- HERO -->
+  <!-- HERO SECTION -->
   <section class="hero">
-    <h1>HYPER-SPEED BROADBAND IN VADODARA</h1>
-    <p>Experience ultra-low latency, zero lag, and unlimited optical fiber Wi-Fi powered by next-gen speed architecture.</p>
-    <a href="services.html" class="btn-glow" style="font-size: 1.1rem; padding: 14px 32px;">Explore Unlimited Plans</a>
+    <div class="live-badge">
+      <span class="pulse-dot"></span> High-Speed Fiber Optical Nodes Live in Vadodara
+    </div>
+    <h1>ULTRA-FAST FIBER INTERNET FOR HOMES & GAMERS</h1>
+    <p>Zero lag spikes, no speed throttling, pure high-bandwidth internet tailored for seamless gaming and 4K streaming.</p>
+    
+    <div class="hero-buttons">
+      <a href="services.html" class="btn-glow" style="font-size: 1.1rem; padding: 14px 32px;">Explore All Services & Plans</a>
+      <a href="#speedtest" class="btn-secondary">Test Connection Speed</a>
+    </div>
   </section>
 
-  <!-- POPULAR PLANS -->
-  <div class="section-title-wrap">
-    <h2 class="section-title">Popular Wifi Wala Plans</h2>
-  </div>
+  <!-- SPEED TEST SECTION -->
+  <section class="speedtest-section" id="speedtest">
+    <div class="speedtest-card">
+      <h2 style="font-size: 26px; font-weight: 800; color: #fff; margin-bottom: 6px;">Live Connection Speed Test</h2>
+      <p style="color: var(--text-muted); font-size: 14px;">Simulate your network performance on Vadodara Fiber Route</p>
 
-  <div class="plans-container">
-    
-    <!-- PLAN 1 -->
-    <div class="plan-card">
-      <div class="badge" style="background: linear-gradient(135deg, #38ef7d, #11998e); color: #fff;">Starter Pack</div>
-      <div class="plan-header">
-        <div class="plan-name">Starter Fiber</div>
-        <div class="plan-price">₹399 <span>/month</span></div>
+      <div class="gauge-container">
+        <div class="speed-number" id="speedVal">0.0</div>
+        <div class="speed-unit">Mbps</div>
       </div>
-      <ul class="plan-features">
-        <li>
-          <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-          <strong>40 Mbps</strong> Unlimited High-Speed Data
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-          Free Standard Fiber Installation
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-          Best for HD Streaming & Browsing
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-          Connects up to 4-6 Devices
-        </li>
-      </ul>
-      <button class="btn-glow btn-plan" onclick="showAdminModal('Starter Fiber - ₹399/mo')">Book Connection</button>
+
+      <button class="btn-glow" id="startTestBtn" style="padding: 12px 36px; font-size: 15px;" onclick="runSpeedTest()">⚡ Start Test Now</button>
+
+      <div class="speed-metrics">
+        <div class="metric-item">
+          <div class="metric-val" id="pingVal">-- ms</div>
+          <div class="metric-lbl">Ping Latency</div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-val" id="uploadVal">-- Mbps</div>
+          <div class="metric-lbl">Upload Speed</div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-val" id="statusVal">Idle</div>
+          <div class="metric-lbl">Status</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES GRID -->
+  <section class="features-section">
+    <div class="section-head">
+      <h2>Engineered For Maximum Performance</h2>
+      <p>Built specifically for gaming, streaming, and remote work setups</p>
     </div>
 
-    <!-- PLAN 2 (MOST POPULAR) -->
-    <div class="plan-card popular">
-      <div class="badge">Most Popular</div>
-      <div class="plan-header">
-        <div class="plan-name">Gamer Ultra</div>
-        <div class="plan-price">₹699 <span>/month</span></div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🎮</div>
+        <div class="feature-title">Ultra-Low Ping Gaming</div>
+        <div class="feature-desc">Custom direct-path routing for BGMI, Valorant, and FPS gaming servers.</div>
       </div>
-      <ul class="plan-features">
-        <li>
-          <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-          <strong>100 Mbps</strong> Truly Unlimited Speed
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-          <strong>Ultra-Low Ping Routing</strong> for BGMI & Gaming
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-          Free High-Range Dual-Band Router
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-          Seamless 4K Video Streaming
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-          Same-Day Fiber Setup
-        </li>
-      </ul>
-      <button class="btn-glow btn-plan" onclick="showAdminModal('Gamer Ultra - ₹699/mo')">Book Connection</button>
-    </div>
 
-    <!-- PLAN 3 -->
-    <div class="plan-card">
-      <div class="badge" style="background: linear-gradient(135deg, #7928ca, #ff0080); color: #fff;">Ultimate Power</div>
-      <div class="plan-header">
-        <div class="plan-name">Hyper Stream</div>
-        <div class="plan-price">₹999 <span>/month</span></div>
+      <div class="feature-card">
+        <div class="feature-icon">🚀</div>
+        <div class="feature-title">Symmetric Speed</div>
+        <div class="feature-desc">1:1 download and upload ratio for lightning-fast cloud transfers and video streams.</div>
       </div>
-      <ul class="plan-features">
-        <li>
-          <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-          <strong>200 Mbps</strong> Blazing Fast Fiber
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-          Multi-Device 4K/8K Simultaneous Stream
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-          Includes 14+ OTT Apps Subscription
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-          Priority VIP Customer Support 24/7
-        </li>
-      </ul>
-      <button class="btn-glow btn-plan" onclick="showAdminModal('Hyper Stream - ₹999/mo')">Book Connection</button>
-    </div>
 
-  </div>
+      <div class="feature-card">
+        <div class="feature-icon">📶</div>
+        <div class="feature-title">Dual-Band Wi-Fi 6</div>
+        <div class="feature-desc">Gigabit routers included for zero dead-zones across every corner of your home.</div>
+      </div>
+    </div>
+  </section>
 
   <!-- CONTACT MODAL -->
   <div class="modal-overlay" id="adminModal">
@@ -489,13 +498,13 @@
   </div>
 
   <footer>
-    &copy; 2026 Vadodara Broadband Wifi Wala. Powered by High-Speed Fiber Network.
+    &copy; 2026 Vadodara Broadband. High-Speed Optical Fiber Infrastructure.
   </footer>
 
   <script>
-    function showAdminModal(planName) {
-      document.getElementById('selectedPlanTitle').innerText = "Inquiry For: " + planName;
-      document.getElementById('waBtn').href = "https://wa.me/919510896157?text=" + encodeURIComponent("Hi Admin, I want to book: " + planName);
+    function showAdminModal(title) {
+      document.getElementById('selectedPlanTitle').innerText = "Inquiry For: " + title;
+      document.getElementById('waBtn').href = "https://wa.me/919510896157?text=" + encodeURIComponent("Hi Admin, I am inquiring about: " + title);
       document.getElementById('adminModal').classList.add('active');
     }
 
@@ -503,7 +512,49 @@
       document.getElementById('adminModal').classList.remove('active');
     }
 
-    // Circuit Background Effect
+    // Speed Test Logic
+    function runSpeedTest() {
+      const btn = document.getElementById('startTestBtn');
+      const speedVal = document.getElementById('speedVal');
+      const pingVal = document.getElementById('pingVal');
+      const uploadVal = document.getElementById('uploadVal');
+      const statusVal = document.getElementById('statusVal');
+
+      btn.disabled = true;
+      btn.style.opacity = '0.5';
+      statusVal.innerText = "Testing Ping...";
+      pingVal.innerText = "...";
+      uploadVal.innerText = "...";
+
+      setTimeout(() => {
+        pingVal.innerText = "6 ms";
+        statusVal.innerText = "Testing Download...";
+        
+        let currentSpeed = 0;
+        let targetSpeed = (Math.random() * 150 + 100).toFixed(1);
+        
+        let interval = setInterval(() => {
+          if (currentSpeed < targetSpeed) {
+            currentSpeed += Math.random() * 15 + 2;
+            if (currentSpeed > targetSpeed) currentSpeed = parseFloat(targetSpeed);
+            speedVal.innerText = currentSpeed.toFixed(1);
+          } else {
+            clearInterval(interval);
+            statusVal.innerText = "Testing Upload...";
+            
+            setTimeout(() => {
+              uploadVal.innerText = (targetSpeed * 0.95).toFixed(1) + " Mbps";
+              statusVal.innerText = "Completed";
+              btn.disabled = false;
+              btn.style.opacity = '1';
+            }, 1000);
+          }
+        }, 80);
+
+      }, 800);
+    }
+
+    // Dynamic Circuit Background
     const canvas = document.getElementById('circuit-bg');
     const ctx = canvas.getContext('2d');
     
@@ -523,7 +574,7 @@
         this.y = Math.random() * canvas.height;
         this.length = Math.random() * 80 + 20;
         this.speed = Math.random() * 1.5 + 0.5;
-        this.opacity = Math.random() * 0.4 + 0.1;
+        this.opacity = Math.random() * 0.3 + 0.1;
       }
       update() {
         this.y += this.speed;
