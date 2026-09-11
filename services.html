@@ -104,6 +104,174 @@
   height: 30px;
   fill: #ffffff;
 }
+  /* Service Filter Tabs */
+.plan-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 30px 0;
+}
+
+.tab-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.tab-btn.active {
+  background: linear-gradient(135deg, #00f2fe, #4facfe);
+  color: #000;
+  border-color: transparent;
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+}
+
+.tab-btn.recommended {
+  border: 1px solid #ff334b;
+  position: relative;
+}
+
+.tab-btn.recommended::after {
+  content: "★ BEST VALUE";
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  background: #ff334b;
+  color: #fff;
+  font-size: 0.65rem;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+/* Plan Panels */
+.plan-content {
+  display: none;
+  animation: fadeIn 0.4s ease-in-out forwards;
+}
+
+.plan-content.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Banner Box for Airtel Offer */
+.airtel-hero-banner {
+  background: linear-gradient(135deg, rgba(228, 0, 43, 0.2), rgba(0, 0, 0, 0.6));
+  border: 2px solid #e4002b;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 30px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(228, 0, 43, 0.2);
+}
+
+.airtel-badge {
+  background: #e4002b;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 4px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.airtel-hero-banner h3 {
+  color: #fff;
+  margin: 12px 0 6px;
+  font-size: 1.6rem;
+}
+
+.airtel-hero-banner p {
+  color: #00f2fe;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+/* Plans Grid Layout */
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.service-plan-card {
+  background: rgba(18, 25, 41, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 20px;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.service-plan-card:hover {
+  transform: translateY(-5px);
+  border-color: #00f2fe;
+}
+
+.service-plan-card.airtel-card {
+  border-color: rgba(228, 0, 43, 0.5);
+}
+
+.service-plan-card.airtel-card:hover {
+  border-color: #e4002b;
+  box-shadow: 0 0 15px rgba(228, 0, 43, 0.3);
+}
+
+.plan-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+}
+
+.plan-price {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.plan-speed {
+  color: #00f2fe;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.cashback-tag {
+  background: rgba(37, 211, 102, 0.15);
+  color: #25d366;
+  border: 1px solid #25d366;
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  border-radius: 6px;
+  display: inline-block;
+  margin-top: 6px;
+}
+
+.plan-features {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0;
+  font-size: 0.88rem;
+  color: #ccc;
+}
+
+.plan-features li {
+  margin-bottom: 8px;
 }
   </style>
 </head>
@@ -126,7 +294,193 @@
     <h1>HYPER-SPEED BROADBAND IN VADODARA</h1>
     <p style="color: #94a3b8;">High-Tech Connectivity Solutions Built For Vadodara</p>
   </div>
+<!-- Service Categories Filter -->
+<div class="plan-tabs">
+  <button class="tab-btn active recommended" onclick="switchProvider('airtel', this)">Airtel Fiber (Recommended)</button>
+  <button class="tab-btn" onclick="switchProvider('jio-fiber', this)">Jio Fiber Regular</button>
+  <button class="tab-btn" onclick="switchProvider('jio-airfiber', this)">Jio AirFiber Offer</button>
+  <button class="tab-btn" onclick="switchProvider('gtpl-ott', this)">GTPL TRU Fiber + OTT</button>
+  <button class="tab-btn" onclick="switchProvider('gtpl-internet', this)">GTPL Internet Only</button>
+</div>
 
+<!-- AIRTEL PLANS PANEL (DEFAULT SHOWING) -->
+<div id="airtel" class="plan-content active">
+  <div class="airtel-hero-banner">
+    <span class="airtel-badge">Top Recommendation for Vadodara</span>
+    <h3>Airtel Wi-Fi Special Advance Offer</h3>
+    <p>Advance Payment ₹2,500 — Get ₹1,000 Cashback Back in Wallet! (₹100 x 10 Months)</p>
+  </div>
+
+  <div class="plans-grid">
+    <div class="service-plan-card airtel-card">
+      <div class="plan-header">
+        <div class="plan-price">₹499 <small>/month</small></div>
+        <div class="plan-speed">⚡ 40 Mbps Speed</div>
+        <span class="cashback-tag">Validity: 4 Months 7 Days</span>
+      </div>
+      <ul class="plan-features">
+        <li>✔ Advance Deposit: ₹2,500</li>
+        <li>✔ ₹1,000 Cashback Credited</li>
+        <li>✔ Unlimited High-Speed Data</li>
+      </ul>
+      <a href="https://wa.me/919510896157?text=Hi,%20I%20want%20to%20book%20Airtel%20499%20Plan" class="btn-glow" style="display:block; text-align:center;">Book Airtel Connection</a>
+    </div>
+
+    <div class="service-plan-card airtel-card">
+      <div class="plan-header">
+        <div class="plan-price">₹599 <small>/month</small></div>
+        <div class="plan-speed">⚡ 30 Mbps + Wi-Fi + TV</div>
+        <span class="cashback-tag">Validity: 3 Months 16 Days</span>
+      </div>
+      <ul class="plan-features">
+        <li>✔ Advance Deposit: ₹2,500</li>
+        <li>✔ ₹1,000 Cashback Credited</li>
+        <li>✔ Includes DTH/TV Channels</li>
+      </ul>
+      <a href="https://wa.me/919510896157?text=Hi,%20I%20want%20to%20book%20Airtel%20599%20Plan" class="btn-glow" style="display:block; text-align:center;">Book Airtel Connection</a>
+    </div>
+
+    <div class="service-plan-card airtel-card">
+      <div class="plan-header">
+        <div class="plan-price">₹799 <small>/month</small></div>
+        <div class="plan-speed">⚡ 100 Mbps Speed</div>
+        <span class="cashback-tag">Validity: 2 Months 20 Days</span>
+      </div>
+      <ul class="plan-features">
+        <li>✔ Advance Deposit: ₹2,500</li>
+        <li>✔ ₹1,000 Cashback Credited</li>
+        <li>✔ High-Speed Streaming Ready</li>
+      </ul>
+      <a href="https://wa.me/919510896157?text=Hi,%20I%20want%20to%20book%20Airtel%20799%20Plan" class="btn-glow" style="display:block; text-align:center;">Book Airtel Connection</a>
+    </div>
+
+    <div class="service-plan-card airtel-card">
+      <div class="plan-header">
+        <div class="plan-price">₹999 <small>/month</small></div>
+        <div class="plan-speed">⚡ 100 Mbps + Full OTT Apps</div>
+        <span class="cashback-tag">Validity: 2 Months 4 Days</span>
+      </div>
+      <ul class="plan-features">
+        <li>✔ Advance Deposit: ₹2,500</li>
+        <li>✔ ₹1,000 Cashback Credited</li>
+        <li>✔ Disney+ Hotstar, SonyLIV, etc.</li>
+      </ul>
+      <a href="https://wa.me/919510896157?text=Hi,%20I%20want%20to%20book%20Airtel%20999%20Plan" class="btn-glow" style="display:block; text-align:center;">Book Airtel Connection</a>
+    </div>
+  </div>
+</div>
+
+<!-- JIO FIBER REGULAR PANEL -->
+<div id="jio-fiber" class="plan-content">
+  <div class="plans-grid">
+    <div class="service-plan-card">
+      <div class="plan-header">
+        <div class="plan-price">₹399 <small>/month</small></div>
+        <div class="plan-speed">⚡ 30 Mbps Speed</div>
+      </div>
+      <ul class="plan-features">
+        <li>• 6 Months Internet Only: ₹2,825</li>
+        <li>• 6 Months with OTT: ₹4,241</li>
+        <li>• Free Voice Calling included</li>
+      </ul>
+      <a href="https://wa.me/919510896157?text=Hi,%20I%20want%20to%20book%20Jio%20399%20Plan" class="btn-glow" style="display:block; text-align:center;">Book Jio Connection</a>
+    </div>
+
+    <div class="service-plan-card">
+      <div class="plan-header">
+        <div class="plan-price">₹699 <small>/month</small></div>
+        <div class="plan-speed">⚡ 100 Mbps Speed</div>
+      </div>
+      <ul class="plan-features">
+        <li>• 6 Months Internet Only: ₹4,949</li>
+        <li>• 6 Months with OTT: ₹6,365</li>
+        <li>• 14+ Live TV & OTT Apps</li>
+      </ul>
+      <a href="https://wa.me/919510896157?text=Hi,%20I%20want%20to%20book%20Jio%20699%20Plan" class="btn-glow" style="display:block; text-align:center;">Book Jio Connection</a>
+    </div>
+  </div>
+</div>
+
+<!-- JIO AIRFIBER PANEL -->
+<div id="jio-airfiber" class="plan-content">
+  <div class="plans-grid">
+    <div class="service-plan-card">
+      <div class="plan-header">
+        <div class="plan-price">₹2,222 <small>Offer Rate</small></div>
+        <div class="plan-speed">⚡ 30 Mbps AirFiber Speed</div>
+      </div>
+      <ul class="plan-features">
+        <li>• 3 Months + 1 Month FREE (4 Months Total)</li>
+        <li>• 1000+ Live TV Channels Included</li>
+        <li>• 14+ OTT Apps Included</li>
+        <li>• Smart TV Box setup Included</li>
+      </ul>
+      <a href="https://wa.me/919510896157?text=Hi,%20I%20want%20to%20book%20Jio%20AirFiber%202222%20Offer" class="btn-glow" style="display:block; text-align:center;">Book AirFiber Offer</a>
+    </div>
+  </div>
+</div>
+
+<!-- GTPL OTT PANEL -->
+<div id="gtpl-ott" class="plan-content">
+  <div class="plans-grid">
+    <div class="service-plan-card">
+      <div class="plan-header">
+        <div class="plan-price">₹2,885 <small>/5 Months</small></div>
+        <div class="plan-speed">⚡ 100 Mbps (3+2 FREE Months)</div>
+      </div>
+      <ul class="plan-features">
+        <li>• Includes 14 OTT Apps Bundled</li>
+        <li>• SonyLIV, Zee5, Shemaroo, etc.</li>
+        <li>• Unlimited Data Usage</li>
+      </ul>
+      <a href="https://wa.me/919510896157?text=Hi,%20I%20want%20to%20book%20GTPL%20100Mbps%20OTT%20Plan" class="btn-glow" style="display:block; text-align:center;">Book GTPL OTT</a>
+    </div>
+
+    <div class="service-plan-card">
+      <div class="plan-header">
+        <div class="plan-price">₹3,298 <small>/5 Months</small></div>
+        <div class="plan-speed">⚡ 200 Mbps (3+2 FREE Months)</div>
+      </div>
+      <ul class="plan-features">
+        <li>• High-Speed 200 Mbps Fiber</li>
+        <li>• 14 Premium OTT Apps</li>
+        <li>• Free Installation included</li>
+      </ul>
+      <a href="https://wa.me/919510896157?text=Hi,%20I%20want%20to%20book%20GTPL%20200Mbps%20OTT%20Plan" class="btn-glow" style="display:block; text-align:center;">Book GTPL OTT</a>
+    </div>
+  </div>
+</div>
+
+<!-- GTPL INTERNET ONLY PANEL -->
+<div id="gtpl-internet" class="plan-content">
+  <div class="plans-grid">
+    <div class="service-plan-card">
+      <div class="plan-header">
+        <div class="plan-price">₹4,000 <small>/6 Months</small></div>
+        <div class="plan-speed">⚡ 60 Mbps Speed</div>
+      </div>
+      <ul class="plan-features">
+        <li>• GTPL Broadband Pvt. Ltd. Plan</li>
+        <li>• Zero Installation & Zero Deposit</li>
+        <li>• Wi-Fi Router Free For Use</li>
+      </ul>
+      <a href="https://wa.me/919510896157?text=Hi,%20I%20want%20to%20book%20GTPL%2060Mbps%206Month%20Plan" class="btn-glow" style="display:block; text-align:center;">Book GTPL Internet</a>
+    </div>
+
+    <div class="service-plan-card">
+      <div class="plan-header">
+        <div class="plan-price">₹4,199 <small>/6 Months</small></div>
+        <div class="plan-speed">⚡ 100 Mbps Speed</div>
+      </div>
+      <ul class="plan-features">
+        <li>• Pure Fiber Optical High Speed</li>
+        <li>• Router Free For Use</li>
+        <li>• Unlimited Data</li>
+      </ul>
+      <a href="https://wa.me/919510896157?text=Hi,%20I%20want%20to%20book%20GTPL%20100Mbps%206Month%20Plan" class="btn-glow" style="display:block; text-align:center;">Book GTPL Internet</a>
+    </div>
+  </div>
+</div>
   <div class="grid-container">
     <div class="card">
       <h3>🌐 FTTH Ultra Broadband</h3>
@@ -158,6 +512,17 @@
   <footer>
     <p>&copy; 2026 Vadodara Broadband Wifi Wala.</p>
   </footer>
+<script>
+  function switchProvider(providerId, btnElement) {
+    const contents = document.querySelectorAll('.plan-content');
+    contents.forEach(content => content.classList.remove('active'));
 
+    const buttons = document.querySelectorAll('.tab-btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+
+    document.getElementById(providerId).classList.add('active');
+    btnElement.classList.add('active');
+  }
+</script>
 </body>
 </html>
