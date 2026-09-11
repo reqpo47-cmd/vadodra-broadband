@@ -3,115 +3,308 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Unlimited Fiber Plans - Vadodara Broadband Wifi Wala</title>
+  <title>Internet Plans & Speed Recommender - Vadodara Broadband</title>
   <style>
-    :root { --bg-dark: #05070f; --card-bg: #0d1222; --cyan: #00f0ff; --purple: #7000ff; --green: #00ff66; --text: #e2e8f0; }
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
-    body { background-color: var(--bg-dark); color: var(--text); overflow-x: hidden; }
+    :root {
+      --bg-dark: #050b14;
+      --card-bg: rgba(15, 23, 42, 0.8);
+      --accent-cyan: #00f2fe;
+      --accent-blue: #4facfe;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
 
-    nav { position: sticky; top: 0; background: rgba(5, 7, 15, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0, 240, 255, 0.2); display: flex; justify-content: space-between; align-items: center; padding: 18px 8%; z-index: 1000; }
-    .logo { font-size: 1.4rem; font-weight: 900; color: #fff; text-shadow: 0 0 10px var(--cyan); }
-    .logo span { color: var(--cyan); }
-    .nav-links { display: flex; gap: 25px; list-style: none; }
-    .nav-links a { color: var(--text); text-decoration: none; font-size: 0.95rem; font-weight: 600; transition: 0.3s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--cyan); text-shadow: 0 0 8px var(--cyan); }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
 
-    .btn-glow { background: linear-gradient(135deg, var(--cyan), var(--purple)); color: #fff; padding: 10px 22px; border-radius: 30px; text-decoration: none; font-weight: bold; box-shadow: 0 0 15px rgba(0, 240, 255, 0.4); transition: 0.3s; }
-    .btn-glow:hover { box-shadow: 0 0 25px rgba(0, 240, 255, 0.8); transform: scale(1.05); }
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-image: 
+        radial-gradient(circle at 20% 20%, rgba(0, 242, 254, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(79, 172, 254, 0.08) 0%, transparent 50%);
+    }
 
-    .header-section { text-align: center; padding: 60px 8% 30px; }
-    .header-section h1 { font-size: 2.8rem; color: #fff; text-shadow: 0 0 15px var(--cyan); margin-bottom: 10px; }
-    
-    .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; padding: 20px 8% 60px; }
-    .card { background: var(--card-bg); border: 1px solid rgba(0, 240, 255, 0.15); border-radius: 16px; padding: 30px; text-align: center; transition: 0.4s; position: relative; }
-    .card:hover { border-color: var(--cyan); box-shadow: 0 0 30px rgba(0, 240, 255, 0.25); transform: translateY(-8px); }
-    .card h3 { font-size: 1.5rem; color: #fff; margin-bottom: 15px; }
-    .card p { color: #94a3b8; font-size: 0.95rem; margin-bottom: 20px; line-height: 1.8; }
-    .price { font-size: 2.2rem; font-weight: 800; color: var(--cyan); margin-bottom: 15px; }
+    /* Navigation Header */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 8%;
+      background: rgba(5, 11, 20, 0.9);
+      border-bottom: 1px solid rgba(0, 242, 254, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(16px);
+    }
 
-    .whatsapp-btn { position: fixed; bottom: 25px; right: 25px; background: var(--green); color: #000; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 30px; box-shadow: 0 0 20px rgba(0, 255, 102, 0.6); text-decoration: none; z-index: 9999; }
-    footer { text-align: center; padding: 40px; border-top: 1px solid rgba(255,255,255,0.05); color: #64748b; }
-    /* Mobile & Tablet Responsive Fixes */
-@media (max-width: 768px) {
-  nav {
-    flex-direction: column;
-    gap: 15px;
-    padding: 15px 5%;
-    text-align: center;
-  }
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: #fff;
+    }
 
-  .nav-links {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px 18px;
-  }
+    .logo span {
+      color: var(--accent-cyan);
+      text-shadow: 0 0 12px rgba(0, 242, 254, 0.5);
+    }
 
-  .nav-links a {
-    font-size: 0.85rem;
-  }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 28px;
+    }
 
-  .hero h1 {
-    font-size: 2.1rem;
-    line-height: 1.2;
-  }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      transition: all 0.3s ease;
+    }
 
-  .hero p {
-    font-size: 1rem;
-  }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--accent-cyan);
+      text-shadow: 0 0 8px rgba(0, 242, 254, 0.4);
+    }
 
-  .header-section h1 {
-    font-size: 2rem;
-  }
+    .btn-glow {
+      background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-blue) 100%);
+      color: #000 !important;
+      padding: 10px 22px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 14px;
+      text-decoration: none;
+      box-shadow: 0 0 20px rgba(0, 242, 254, 0.35);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
 
-  .grid-container {
-    grid-template-columns: 1fr;
-    padding: 15px 5% 40px;
-    gap: 20px;
-  }
+    .btn-glow:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(0, 242, 254, 0.7);
+    }
 
-  .card {
-    padding: 20px;
-  }
+    /* Hero Banner */
+    .hero-banner {
+      text-align: center;
+      padding: 60px 20px 30px;
+    }
 
-  .form-container {
-    margin: 20px 15px;
-    padding: 25px 20px;
-  }
+    .hero-banner h1 {
+      font-size: 40px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      background: linear-gradient(180deg, #ffffff 0%, var(--accent-cyan) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+    }
 
-.whatsapp-btn {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  background-color: #25D366;
-  color: #ffffff;
-  border-radius: 50%;
-  width: 55px;
-  height: 55px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  z-index: 9999;
-  text-decoration: none;
-  transition: transform 0.2s ease;
-}
+    .hero-banner p {
+      color: var(--text-muted);
+      font-size: 16px;
+    }
 
-.whatsapp-btn:hover {
-  transform: scale(1.1);
-}
+    /* Interactive Calculator Section */
+    .calc-container {
+      max-width: 800px;
+      margin: 20px auto 60px;
+      padding: 35px;
+      background: var(--card-bg);
+      border: 1px solid rgba(0, 242, 254, 0.25);
+      border-radius: 24px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
 
-.whatsapp-btn svg {
-  width: 30px;
-  height: 30px;
-  fill: #ffffff;
-}
-}
+    .calc-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    .slider-group {
+      margin-bottom: 30px;
+    }
+
+    .slider-label {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #cbd5e1;
+    }
+
+    .slider-label span {
+      color: var(--accent-cyan);
+    }
+
+    input[type=range] {
+      width: 100%;
+      height: 8px;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.1);
+      outline: none;
+      accent-color: var(--accent-cyan);
+      cursor: pointer;
+    }
+
+    .result-box {
+      background: rgba(5, 11, 20, 0.7);
+      border: 1px dashed rgba(0, 242, 254, 0.4);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      margin-top: 25px;
+    }
+
+    .rec-speed {
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--accent-cyan);
+      margin-bottom: 6px;
+    }
+
+    .rec-desc {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    /* Features Grid */
+    .features-section {
+      max-width: 1100px;
+      margin: 0 auto 60px;
+      padding: 0 20px;
+    }
+
+    .section-head {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 35px;
+      color: #fff;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      padding: 25px;
+      transition: 0.3s;
+    }
+
+    .feature-card:hover {
+      border-color: var(--accent-cyan);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 242, 254, 0.15);
+    }
+
+    .feature-icon {
+      font-size: 32px;
+      margin-bottom: 15px;
+    }
+
+    .feature-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    .feature-text {
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* Modal Overlay */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(12px);
+      z-index: 2000;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background: #0d121f;
+      border: 1px solid rgba(0, 242, 254, 0.4);
+      border-radius: 24px;
+      max-width: 440px;
+      width: 100%;
+      padding: 32px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 0 50px rgba(0, 242, 254, 0.2);
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 18px;
+      right: 22px;
+      font-size: 26px;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .phone-display-box {
+      background: rgba(7, 9, 14, 0.8);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      border-radius: 14px;
+      padding: 16px;
+      margin: 20px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    footer {
+      margin-top: auto;
+      text-align: center;
+      padding: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      color: #475569;
+      font-size: 14px;
+    }
   </style>
 </head>
 <body>
 
+  <!-- NAVBAR -->
   <nav>
-   <div class="logo">VADODARA<span>BROADBAND</span></div>
+    <div class="logo">VADODARA<span>BROADBAND</span></div>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="plans.html" class="active">Internet Plans</a></li>
@@ -120,53 +313,125 @@
       <li><a href="about.html">About Us</a></li>
       <li><a href="contact.html">Contact Us</a></li>
     </ul>
-    <a href="contact.html" class="btn-glow">Get Connection</a>
+    <button class="btn-glow" onclick="showAdminModal('General Connection')">Get Connection</button>
   </nav>
 
-  <div class="header-section">
-    <h1>HYPER-SPEED BROADBAND IN VADODARA</h1>
-    <p style="color: #94a3b8;">Truly Unlimited Fiber Optics Data with Zero Throttling</p>
+  <!-- HERO -->
+  <div class="hero-banner">
+    <h1>SMART BANDWIDTH ESTIMATOR</h1>
+    <p>Find out exactly how much internet speed your home or office needs</p>
   </div>
 
-  <div class="grid-container">
-    <div class="card">
-      <h3>Starter Pack</h3>
-      <div class="price">₹399<span style="font-size: 1rem; color: #64748b;">/mo</span></div>
-      <p>⚡ 40 Mbps Speed<br>♾️ Unlimited Data<br>🛠️ Free Installation<br>📱 Ideal for 2-3 Devices</p>
-      <a href="https://wa.me/?text=Hi%20Vadodra%20Broadband,%20I%20want%20to%20book%2040Mbps%20Plan" class="btn-glow">Book Plan</a>
+  <!-- SPEED CALCULATOR -->
+  <div class="calc-container">
+    <div class="calc-title">⚡ Estimate Your Recommended Speed</div>
+    
+    <div class="slider-group">
+      <div class="slider-label">
+        <span>Connected Devices:</span>
+        <span id="deviceVal">3 Devices</span>
+      </div>
+      <input type="range" id="deviceSlider" min="1" max="20" value="3" oninput="updateCalculation()">
     </div>
 
-    <div class="card" style="border-color: var(--cyan);">
-      <h3>Gamer Turbo</h3>
-      <div class="price">₹699<span style="font-size: 1rem; color: #64748b;">/mo</span></div>
-      <p>⚡ 100 Mbps Speed<br>🎮 Ultra-Low Ping Routing<br>📶 Free Dual-Band Router<br>📱 Ideal for 5-8 Devices</p>
-      <a href="https://wa.me/?text=Hi%20Vadodra%20Broadband,%20I%20want%20to%20book%20100Mbps%20Plan" class="btn-glow">Book Plan</a>
+    <div class="slider-group">
+      <div class="slider-label">
+        <span>Primary Usage:</span>
+        <span id="usageVal">4K Video Streaming & Work</span>
+      </div>
+      <input type="range" id="usageSlider" min="1" max="3" value="2" oninput="updateCalculation()">
     </div>
 
-    <div class="card">
-      <h3>Streamer Max</h3>
-      <div class="price">₹999<span style="font-size: 1rem; color: #64748b;">/mo</span></div>
-      <p>⚡ 200 Mbps Speed<br>📺 4K Multi-Stream Ready<br>⚡ Dual Band Gigabit Router<br>📱 10+ Devices Supported</p>
-      <a href="https://wa.me/?text=Hi%20Vadodra%20Broadband,%20I%20want%20to%20book%20200Mbps%20Plan" class="btn-glow">Book Plan</a>
-    </div>
-
-    <div class="card">
-      <h3>Giga Ultra</h3>
-      <div class="price">₹1499<span style="font-size: 1rem; color: #64748b;">/mo</span></div>
-      <p>⚡ 300 Mbps Ultra Speed<br>🏢 Home Office / Business<br>🛡️ Dedicated Static IP Option<br>👑 VIP Priority Support</p>
-      <a href="https://wa.me/?text=Hi%20Vadodra%20Broadband,%20I%20want%20to%20book%20300Mbps%20Plan" class="btn-glow">Book Plan</a>
+    <div class="result-box">
+      <div class="rec-speed" id="speedResult">⚡ 100 Mbps Recommended</div>
+      <div class="rec-desc" id="descResult">Ideal for smooth 4K Streaming, Online Gaming & Work From Home without lag.</div>
+      <button class="btn-glow" onclick="showAdminModal(document.getElementById('speedResult').innerText)">Inquire For This Speed</button>
     </div>
   </div>
 
- <a href="https://wa.me/919510896157" class="whatsapp-btn" target="_blank" aria-label="Chat on WhatsApp">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-    <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3 18.6-68.1-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
-  </svg>
-</a>
+  <!-- WHY CHOOSE US -->
+  <div class="features-section">
+    <div class="section-head">Why Vadodara Broadband Fiber?</div>
+    <div class="features-grid">
+      
+      <div class="feature-card">
+        <div class="feature-icon">🚀</div>
+        <div class="feature-title">Ultra-Low Ping Routing</div>
+        <div class="feature-text">Optimized server routing for BGMI, Valorant, and FPS games ensuring smooth gameplay with zero packet loss.</div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📶</div>
+        <div class="feature-title">Free Dual-Band Router</div>
+        <div class="feature-text">High-performance 5GHz Wi-Fi router provided with advance connection plans for wall-to-wall coverage.</div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🛠️</div>
+        <div class="feature-title">Same Day Installation</div>
+        <div class="feature-text">Get your fiber line activated within hours of booking with dedicated local support across Vadodara.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ADMIN CONTACT MODAL -->
+  <div class="modal-overlay" id="adminModal">
+    <div class="modal-box">
+      <span class="modal-close-btn" onclick="closePopup()">&times;</span>
+      <div style="font-size:40px; margin-bottom:10px;">🎧</div>
+      <h2 style="font-size: 22px; font-weight: 800; color:#fff;">Contact Local Support</h2>
+      <p style="color: #94a3b8; font-size: 13px; margin-top: 6px;" id="selectedPlanTitle">Inquiry For: Fiber Connection</p>
+
+      <div class="phone-display-box">
+        <div style="font-size:20px; font-weight:800; color:var(--accent-cyan);">+91 9510896157</div>
+        <button style="background:rgba(0, 242, 254, 0.15); border:1px solid var(--accent-cyan); color:var(--accent-cyan); padding:6px 12px; border-radius:8px; cursor:pointer; font-weight:700;" onclick="navigator.clipboard.writeText('9510896157'); alert('Number Copied!');">Copy</button>
+      </div>
+
+      <a id="waBtn" href="https://wa.me/919510896157" target="_blank" style="display:block; background:#25d366; color:#fff; padding:14px; border-radius:12px; text-decoration:none; font-weight:700; box-shadow: 0 0 20px rgba(37, 211, 102, 0.35);">
+        💬 Chat on WhatsApp
+      </a>
+    </div>
+  </div>
 
   <footer>
-    <p>&copy; 2026 Vadodara Broadband Wifi Wala.</p>
+    &copy; 2026 Vadodara Broadband. All Rights Reserved.
   </footer>
 
+  <script>
+    const usageTypes = ["Basic Browsing & Social Media", "4K Streaming & WFH", "Heavy Gaming & Multi-User 4K"];
+
+    function updateCalculation() {
+      const devCount = parseInt(document.getElementById('deviceSlider').value);
+      const usageType = parseInt(document.getElementById('usageSlider').value);
+
+      document.getElementById('deviceVal').innerText = `${devCount} Device${devCount > 1 ? 's' : ''}`;
+      document.getElementById('usageVal').innerText = usageTypes[usageType - 1];
+
+      let speed = "40 Mbps";
+      let desc = "Great for basic browsing, social media, and SD video streaming on a few devices.";
+
+      if (devCount > 8 || usageType === 3) {
+        speed = "200 Mbps";
+        desc = "Perfect for heavy multi-device 4K streaming, gaming setups, and large families.";
+      } else if (devCount > 3 || usageType === 2) {
+        speed = "100 Mbps";
+        desc = "Ideal for smooth 4K Streaming, Online Gaming & Work From Home without lag.";
+      }
+
+      document.getElementById('speedResult').innerText = `⚡ ${speed} Recommended`;
+      document.getElementById('descResult').innerText = desc;
+    }
+
+    function showAdminModal(title) {
+      document.getElementById('selectedPlanTitle').innerText = "Inquiry For: " + title;
+      document.getElementById('waBtn').href = "https://wa.me/919510896157?text=" + encodeURIComponent("Hi Admin, I checked the Speed Calculator and need inquiry for: " + title);
+      document.getElementById('adminModal').classList.add('active');
+    }
+
+    function closePopup() {
+      document.getElementById('adminModal').classList.remove('active');
+    }
+  </script>
 </body>
 </html>
