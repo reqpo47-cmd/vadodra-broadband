@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vadodara Broadband - Next-Gen High Speed Fiber</title>
+  <title>Vadodara Broadband - Next-Gen Home & Office Fiber</title>
   <style>
     :root {
       --bg-dark: #030712;
-      --card-bg: rgba(15, 23, 42, 0.7);
+      --card-bg: rgba(15, 23, 42, 0.75);
       --accent-cyan: #00f2fe;
       --accent-blue: #4facfe;
       --accent-purple: #7928ca;
@@ -30,8 +30,8 @@
       flex-direction: column;
       overflow-x: hidden;
       background-image: 
-        radial-gradient(circle at 15% 15%, rgba(0, 242, 254, 0.1) 0%, transparent 45%),
-        radial-gradient(circle at 85% 85%, rgba(121, 40, 202, 0.12) 0%, transparent 45%);
+        radial-gradient(circle at 10% 20%, rgba(0, 242, 254, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(121, 40, 202, 0.15) 0%, transparent 45%);
     }
 
     canvas#circuit-bg {
@@ -44,12 +44,12 @@
       pointer-events: none;
     }
 
-    /* Navigation Header */
+    /* Navbar Header */
     nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 18px 8%;
+      padding: 18px 6%;
       background: rgba(3, 7, 18, 0.85);
       border-bottom: 1px solid rgba(0, 242, 254, 0.15);
       position: sticky;
@@ -80,7 +80,7 @@
       color: var(--text-muted);
       text-decoration: none;
       font-weight: 600;
-      font-size: 15px;
+      font-size: 14px;
       transition: all 0.3s ease;
     }
 
@@ -112,8 +112,8 @@
     /* Hero Section */
     .hero {
       text-align: center;
-      padding: 80px 20px 40px;
-      max-width: 950px;
+      padding: 60px 20px 40px;
+      max-width: 1050px;
       margin: 0 auto;
     }
 
@@ -123,12 +123,12 @@
       gap: 8px;
       background: rgba(0, 242, 254, 0.08);
       border: 1px solid rgba(0, 242, 254, 0.25);
-      padding: 6px 16px;
+      padding: 6px 18px;
       border-radius: 30px;
       font-size: 13px;
       font-weight: 700;
       color: var(--accent-cyan);
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
     .pulse-dot {
@@ -147,21 +147,21 @@
     }
 
     .hero h1 {
-      font-size: 52px;
+      font-size: 48px;
       font-weight: 900;
       letter-spacing: -1px;
       line-height: 1.15;
       background: linear-gradient(180deg, #ffffff 40%, var(--accent-cyan) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
 
     .hero p {
       color: var(--text-muted);
-      font-size: 18px;
+      font-size: 17px;
       line-height: 1.6;
-      margin-bottom: 35px;
+      margin-bottom: 30px;
     }
 
     .hero-buttons {
@@ -175,10 +175,10 @@
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.15);
       color: #fff;
-      padding: 14px 28px;
+      padding: 12px 26px;
       border-radius: 10px;
       font-weight: 700;
-      font-size: 15px;
+      font-size: 14px;
       text-decoration: none;
       transition: 0.3s;
     }
@@ -188,97 +188,57 @@
       background: rgba(0, 242, 254, 0.1);
     }
 
-    /* Live Speed Test Widget Section */
-    .speedtest-section {
-      max-width: 900px;
-      margin: 50px auto 80px;
+    /* Live Stats Ribbon */
+    .stats-ribbon {
+      max-width: 1250px;
+      margin: 20px auto 60px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
       padding: 0 20px;
     }
 
-    .speedtest-card {
-      background: linear-gradient(180deg, rgba(15, 23, 42, 0.85) 0%, rgba(3, 7, 18, 0.9) 100%);
-      border: 1px solid rgba(0, 242, 254, 0.3);
-      border-radius: 28px;
-      padding: 40px;
+    .stat-box {
+      background: var(--card-bg);
+      border: 1px solid rgba(0, 242, 254, 0.15);
+      border-radius: 16px;
+      padding: 22px;
       text-align: center;
-      box-shadow: 0 20px 50px rgba(0, 242, 254, 0.1);
-      backdrop-filter: blur(16px);
-      position: relative;
+      backdrop-filter: blur(12px);
     }
 
-    .gauge-container {
-      position: relative;
-      width: 220px;
-      height: 220px;
-      margin: 20px auto 30px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(0, 242, 254, 0.05) 0%, transparent 70%);
-      border: 3px dashed rgba(0, 242, 254, 0.3);
-      box-shadow: inset 0 0 30px rgba(0, 242, 254, 0.15);
-    }
-
-    .speed-number {
-      font-size: 54px;
+    .stat-val {
+      font-size: 32px;
       font-weight: 900;
-      color: #fff;
-      text-shadow: 0 0 20px var(--accent-cyan);
-      line-height: 1;
+      color: var(--accent-cyan);
     }
 
-    .speed-unit {
-      font-size: 14px;
+    .stat-lbl {
+      color: var(--text-muted);
+      font-size: 12px;
       font-weight: 700;
-      color: var(--accent-cyan);
-      letter-spacing: 2px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
       margin-top: 4px;
     }
 
-    .speed-metrics {
-      display: flex;
-      justify-content: space-around;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding-top: 25px;
-      margin-top: 20px;
-    }
-
-    .metric-item {
-      text-align: center;
-    }
-
-    .metric-val {
-      font-size: 20px;
-      font-weight: 800;
-      color: #fff;
-    }
-
-    .metric-lbl {
-      font-size: 12px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      margin-top: 2px;
-    }
-
-    /* Features Grid */
+    /* Features Grid (4 Columns Packed Layout) */
     .features-section {
-      max-width: 1100px;
-      margin: 0 auto 90px;
+      max-width: 1250px;
+      margin: 0 auto 70px;
       padding: 0 20px;
     }
 
     .section-head {
       text-align: center;
-      margin-bottom: 50px;
+      margin-bottom: 40px;
     }
 
     .section-head h2 {
-      font-size: 34px;
+      font-size: 32px;
       font-weight: 800;
       color: #fff;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .section-head p {
@@ -288,44 +248,163 @@
 
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 25px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 1100px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .features-grid { grid-template-columns: 1fr; }
     }
 
     .feature-card {
       background: var(--card-bg);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 20px;
-      padding: 32px;
+      border-radius: 18px;
+      padding: 26px;
       transition: all 0.3s ease;
       backdrop-filter: blur(12px);
     }
 
     .feature-card:hover {
       border-color: var(--accent-cyan);
-      transform: translateY(-6px);
-      box-shadow: 0 12px 35px rgba(0, 242, 254, 0.15);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 242, 254, 0.15);
     }
 
     .feature-icon {
-      font-size: 36px;
-      margin-bottom: 18px;
+      font-size: 32px;
+      margin-bottom: 14px;
     }
 
     .feature-title {
-      font-size: 20px;
+      font-size: 17px;
       font-weight: 800;
       color: #fff;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .feature-desc {
       color: var(--text-muted);
-      font-size: 14px;
+      font-size: 13px;
       line-height: 1.6;
     }
 
-    /* Modal */
+    /* Target Segment Banner */
+    .segment-section {
+      max-width: 1250px;
+      margin: 0 auto 80px;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+    }
+
+    @media (max-width: 768px) {
+      .segment-section { grid-template-columns: 1fr; }
+    }
+
+    .segment-card {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(3, 7, 18, 0.95) 100%);
+      border: 1px solid rgba(0, 242, 254, 0.25);
+      border-radius: 20px;
+      padding: 32px;
+    }
+
+    .segment-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .segment-desc {
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    /* Live Ping Matrix */
+    .ping-section {
+      max-width: 1250px;
+      margin: 0 auto 80px;
+      padding: 0 20px;
+    }
+
+    .ping-card {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(3, 7, 18, 0.95) 100%);
+      border: 1px solid rgba(0, 242, 254, 0.25);
+      border-radius: 20px;
+      padding: 35px;
+    }
+
+    .ping-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 25px;
+    }
+
+    .ping-item {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .ping-game {
+      font-weight: 700;
+      font-size: 14px;
+      color: #fff;
+    }
+
+    .ping-ms {
+      font-weight: 800;
+      color: #10b981;
+      font-size: 15px;
+    }
+
+    /* Bottom Speed Test Banner */
+    .speedtest-trigger-banner {
+      max-width: 1250px;
+      margin: 0 auto 80px;
+      padding: 0 20px;
+    }
+
+    .trigger-card {
+      background: linear-gradient(135deg, rgba(0, 242, 254, 0.1) 0%, rgba(121, 40, 202, 0.1) 100%);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      border-radius: 20px;
+      padding: 35px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .trigger-info h3 {
+      font-size: 24px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .trigger-info p {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    /* Speed Test Modal Overlay */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -334,7 +413,7 @@
       height: 100%;
       background: rgba(0, 0, 0, 0.85);
       backdrop-filter: blur(12px);
-      z-index: 2000;
+      z-index: 2500;
       display: none;
       justify-content: center;
       align-items: center;
@@ -345,36 +424,73 @@
       display: flex;
     }
 
-    .modal-box {
-      background: #0d121f;
+    .speedtest-modal-box {
+      background: #0b0f19;
       border: 1px solid rgba(0, 242, 254, 0.4);
       border-radius: 24px;
-      max-width: 440px;
+      max-width: 500px;
       width: 100%;
-      padding: 32px;
+      padding: 35px;
       text-align: center;
       position: relative;
-      box-shadow: 0 0 50px rgba(0, 242, 254, 0.2);
+      box-shadow: 0 0 50px rgba(0, 242, 254, 0.25);
     }
 
-    .modal-close-btn {
+    .gauge-container {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      margin: 20px auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 242, 254, 0.08) 0%, transparent 70%);
+      border: 3px dashed rgba(0, 242, 254, 0.35);
+    }
+
+    .speed-number {
+      font-size: 48px;
+      font-weight: 900;
+      color: #fff;
+      text-shadow: 0 0 15px var(--accent-cyan);
+    }
+
+    .speed-unit {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      letter-spacing: 2px;
+    }
+
+    .speed-metrics {
+      display: flex;
+      justify-content: space-around;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 20px;
+      margin-top: 20px;
+    }
+
+    .metric-val {
+      font-size: 18px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .metric-lbl {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .close-btn {
       position: absolute;
-      top: 18px;
-      right: 22px;
-      font-size: 26px;
+      top: 16px;
+      right: 20px;
+      font-size: 24px;
       color: var(--text-muted);
       cursor: pointer;
-    }
-
-    .phone-display-box {
-      background: rgba(7, 9, 14, 0.8);
-      border: 1px solid rgba(0, 242, 254, 0.3);
-      border-radius: 14px;
-      padding: 16px;
-      margin: 20px 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
     }
 
     footer {
@@ -409,84 +525,188 @@
   <!-- HERO SECTION -->
   <section class="hero">
     <div class="live-badge">
-      <span class="pulse-dot"></span> High-Speed Fiber Optical Nodes Live in Vadodara
+      <span class="pulse-dot"></span> Gigabit Optical Nodes Active across Vadodara
     </div>
-    <h1>ULTRA-FAST FIBER INTERNET FOR HOMES & GAMERS</h1>
-    <p>Zero lag spikes, no speed throttling, pure high-bandwidth internet tailored for seamless gaming and 4K streaming.</p>
+    <h1>ULTRA-FAST FIBER FOR HOMES & ENTERPRISE OFFICES</h1>
+    <p>Zero lag spikes for heavy gaming, symmetrical 1:1 speed, and 99.9% uptime guaranteed for commercial corporate office setups.</p>
     
     <div class="hero-buttons">
-      <a href="services.html" class="btn-glow" style="font-size: 1.1rem; padding: 14px 32px;">Explore All Services & Plans</a>
-      <a href="#speedtest" class="btn-secondary">Test Connection Speed</a>
+      <a href="services.html" class="btn-glow">Explore All Services & Plans</a>
+      <a href="plans.html" class="btn-secondary">Check Speed Needed</a>
     </div>
   </section>
 
-  <!-- SPEED TEST SECTION -->
-  <section class="speedtest-section" id="speedtest">
-    <div class="speedtest-card">
-      <h2 style="font-size: 26px; font-weight: 800; color: #fff; margin-bottom: 6px;">Live Connection Speed Test</h2>
-      <p style="color: var(--text-muted); font-size: 14px;">Simulate your network performance on Vadodara Fiber Route</p>
-
-      <div class="gauge-container">
-        <div class="speed-number" id="speedVal">0.0</div>
-        <div class="speed-unit">Mbps</div>
-      </div>
-
-      <button class="btn-glow" id="startTestBtn" style="padding: 12px 36px; font-size: 15px;" onclick="runSpeedTest()">⚡ Start Test Now</button>
-
-      <div class="speed-metrics">
-        <div class="metric-item">
-          <div class="metric-val" id="pingVal">-- ms</div>
-          <div class="metric-lbl">Ping Latency</div>
-        </div>
-        <div class="metric-item">
-          <div class="metric-val" id="uploadVal">-- Mbps</div>
-          <div class="metric-lbl">Upload Speed</div>
-        </div>
-        <div class="metric-item">
-          <div class="metric-val" id="statusVal">Idle</div>
-          <div class="metric-lbl">Status</div>
-        </div>
-      </div>
+  <!-- STATS RIBBON -->
+  <div class="stats-ribbon">
+    <div class="stat-box">
+      <div class="stat-val">99.9%</div>
+      <div class="stat-lbl">Network Uptime Guarantee</div>
     </div>
-  </section>
+    <div class="stat-box">
+      <div class="stat-val">&lt; 8ms</div>
+      <div class="stat-lbl">Gaming Latency (Vadodara)</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val">1 Gbps</div>
+      <div class="stat-lbl">Fiber Leased Port Speed</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val">24/7</div>
+      <div class="stat-lbl">Priority Local Support</div>
+    </div>
+  </div>
 
-  <!-- FEATURES GRID -->
+  <!-- FEATURES GRID SECTION (4 COLUMNS) -->
   <section class="features-section">
     <div class="section-head">
-      <h2>Engineered For Maximum Performance</h2>
-      <p>Built specifically for gaming, streaming, and remote work setups</p>
+      <h2>Engineered For Pure Performance</h2>
+      <p>Built for gaming setups, 4K multi-device households, and corporate business infrastructure</p>
     </div>
 
     <div class="features-grid">
       <div class="feature-card">
         <div class="feature-icon">🎮</div>
         <div class="feature-title">Ultra-Low Ping Gaming</div>
-        <div class="feature-desc">Custom direct-path routing for BGMI, Valorant, and FPS gaming servers.</div>
+        <div class="feature-desc">Custom direct-path routing for BGMI, Valorant, CS2, and FPS servers with zero jitter.</div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🏢</div>
+        <div class="feature-title">Office Fiber Leased Line</div>
+        <div class="feature-desc">Dedicated corporate bandwidth lines with SLA guarantee for seamless Zoom, ERP & SaaS operations.</div>
       </div>
 
       <div class="feature-card">
         <div class="feature-icon">🚀</div>
-        <div class="feature-title">Symmetric Speed</div>
-        <div class="feature-desc">1:1 download and upload ratio for lightning-fast cloud transfers and video streams.</div>
+        <div class="feature-title">Symmetric 1:1 Speed</div>
+        <div class="feature-desc">Identical download and upload speeds. Upload large video files or cloud backups instantly.</div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <div class="feature-title">Static IP Options</div>
+        <div class="feature-desc">Commercial Static IPs available for hosted local servers, CCTV monitoring, and enterprise VPNs.</div>
       </div>
 
       <div class="feature-card">
         <div class="feature-icon">📶</div>
         <div class="feature-title">Dual-Band Wi-Fi 6</div>
-        <div class="feature-desc">Gigabit routers included for zero dead-zones across every corner of your home.</div>
+        <div class="feature-desc">Gigabit routers provided to handle multi-device mesh Wi-Fi across large homes and offices.</div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <div class="feature-title">Same-Day Fiber Setup</div>
+        <div class="feature-desc">Vadodara local technicians handle complete fiber termination and router setup in hours.</div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🎬</div>
+        <div class="feature-title">Buffer-Free 8K Streaming</div>
+        <div class="feature-desc">Stream multiple 4K/8K media streams simultaneously without throttling or buffer wheel.</div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🎧</div>
+        <div class="feature-title">24/7 Priority Support</div>
+        <div class="feature-desc">Direct WhatsApp and call lines with local engineers. No automated bot loops.</div>
       </div>
     </div>
   </section>
 
+  <!-- HOME VS OFFICE DUAL SEGMENT -->
+  <section class="segment-section">
+    <div class="segment-card">
+      <div class="segment-title">🏠 Ultra Fiber For Homes</div>
+      <div class="segment-desc">Designed for modern homes, gamers, and smart TVs. Enjoy lag-free gaming, zero buffering, and full family Wi-Fi coverage with zero monthly bandwidth caps.</div>
+      <button class="btn-glow" style="font-size:13px; padding:8px 20px;" onclick="showAdminModal('Home Fiber Connection')">Connect Home Fiber</button>
+    </div>
+
+    <div class="segment-card">
+      <div class="segment-title">🏢 Enterprise Fiber For Offices</div>
+      <div class="segment-desc">Dedicated high-speed connectivity with enterprise SLA uptime, static IP support, and multi-user load balancing for Vadodara businesses, IT offices & retail shops.</div>
+      <button class="btn-glow" style="font-size:13px; padding:8px 20px;" onclick="showAdminModal('Commercial Office Connection')">Get Office Lease Line</button>
+    </div>
+  </section>
+
+  <!-- LIVE ROUTE PING PREVIEW -->
+  <section class="ping-section">
+    <div class="ping-card">
+      <h3 style="font-size: 22px; font-weight: 800; color:#fff;">Live Ping Matrix (Vadodara Direct Route)</h3>
+      <p style="color:var(--text-muted); font-size:13px; margin-top:4px;">Average response times measured from local optical fiber node</p>
+      
+      <div class="ping-grid">
+        <div class="ping-item">
+          <span class="ping-game">BGMI / PUBG</span>
+          <span class="ping-ms">12 ms</span>
+        </div>
+        <div class="ping-item">
+          <span class="ping-game">Valorant (Mumbai)</span>
+          <span class="ping-ms">8 ms</span>
+        </div>
+        <div class="ping-item">
+          <span class="ping-game">Google & AWS Servers</span>
+          <span class="ping-ms">5 ms</span>
+        </div>
+        <div class="ping-item">
+          <span class="ping-game">Zoom / Teams Call</span>
+          <span class="ping-ms">4 ms</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOTTOM SPEED TEST BANNER -->
+  <section class="speedtest-trigger-banner">
+    <div class="trigger-card">
+      <div class="trigger-info">
+        <h3>⚡ Want to test connection performance?</h3>
+        <p>Run an instant speed & ping simulation on Vadodara Broadband optical route.</p>
+      </div>
+      <button class="btn-glow" style="padding: 14px 32px; font-size: 15px;" onclick="openSpeedTestModal()">Test Connection Speed</button>
+    </div>
+  </section>
+
+  <!-- SPEED TEST MODAL POPUP -->
+  <div class="modal-overlay" id="speedTestModal">
+    <div class="speedtest-modal-box">
+      <span class="close-btn" onclick="closeSpeedTestModal()">&times;</span>
+      <h3 style="font-size: 22px; font-weight: 800; color: #fff;">Live Speed Meter</h3>
+      <p style="color: var(--text-muted); font-size: 13px; margin-top: 4px;">Simulating route to Vadodara Fiber Node</p>
+
+      <div class="gauge-container">
+        <div class="speed-number" id="modalSpeedVal">0.0</div>
+        <div class="speed-unit">Mbps</div>
+      </div>
+
+      <button class="btn-glow" id="modalStartBtn" style="padding: 12px 30px; font-size: 14px; margin-top: 10px;" onclick="runModalSpeedTest()">⚡ Run Speed Test</button>
+
+      <div class="speed-metrics">
+        <div>
+          <div class="metric-val" id="modalPingVal">-- ms</div>
+          <div class="metric-lbl">Ping</div>
+        </div>
+        <div>
+          <div class="metric-val" id="modalUploadVal">-- Mbps</div>
+          <div class="metric-lbl">Upload</div>
+        </div>
+        <div>
+          <div class="metric-val" id="modalStatusVal">Idle</div>
+          <div class="metric-lbl">Status</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- CONTACT MODAL -->
   <div class="modal-overlay" id="adminModal">
-    <div class="modal-box">
-      <span class="modal-close-btn" onclick="closePopup()">&times;</span>
+    <div class="speedtest-modal-box" style="max-width: 420px;">
+      <span class="close-btn" onclick="closePopup()">&times;</span>
       <div style="font-size:40px; margin-bottom:10px;">🎧</div>
       <h2 style="font-size: 22px; font-weight: 800; color:#fff;">Get Instant Connection</h2>
       <p style="color: #94a3b8; font-size: 13px; margin-top: 6px;" id="selectedPlanTitle">Inquiry For: Fiber Connection</p>
 
-      <div class="phone-display-box">
+      <div style="background: rgba(7, 9, 14, 0.8); border: 1px solid rgba(0, 242, 254, 0.3); border-radius: 14px; padding: 16px; margin: 20px 0; display: flex; align-items: center; justify-content: space-between;">
         <div style="font-size:20px; font-weight:800; color:var(--accent-cyan);">+91 9510896157</div>
         <button style="background:rgba(0, 242, 254, 0.15); border:1px solid var(--accent-cyan); color:var(--accent-cyan); padding:6px 12px; border-radius:8px; cursor:pointer; font-weight:700;" onclick="navigator.clipboard.writeText('9510896157'); alert('Number Copied!');">Copy</button>
       </div>
@@ -512,13 +732,21 @@
       document.getElementById('adminModal').classList.remove('active');
     }
 
-    // Speed Test Logic
-    function runSpeedTest() {
-      const btn = document.getElementById('startTestBtn');
-      const speedVal = document.getElementById('speedVal');
-      const pingVal = document.getElementById('pingVal');
-      const uploadVal = document.getElementById('uploadVal');
-      const statusVal = document.getElementById('statusVal');
+    // Speed Test Modal Logic
+    function openSpeedTestModal() {
+      document.getElementById('speedTestModal').classList.add('active');
+    }
+
+    function closeSpeedTestModal() {
+      document.getElementById('speedTestModal').classList.remove('active');
+    }
+
+    function runModalSpeedTest() {
+      const btn = document.getElementById('modalStartBtn');
+      const speedVal = document.getElementById('modalSpeedVal');
+      const pingVal = document.getElementById('modalPingVal');
+      const uploadVal = document.getElementById('modalUploadVal');
+      const statusVal = document.getElementById('modalStatusVal');
 
       btn.disabled = true;
       btn.style.opacity = '0.5';
@@ -531,11 +759,11 @@
         statusVal.innerText = "Testing Download...";
         
         let currentSpeed = 0;
-        let targetSpeed = (Math.random() * 150 + 100).toFixed(1);
+        let targetSpeed = (Math.random() * 150 + 120).toFixed(1);
         
         let interval = setInterval(() => {
           if (currentSpeed < targetSpeed) {
-            currentSpeed += Math.random() * 15 + 2;
+            currentSpeed += Math.random() * 18 + 3;
             if (currentSpeed > targetSpeed) currentSpeed = parseFloat(targetSpeed);
             speedVal.innerText = currentSpeed.toFixed(1);
           } else {
@@ -543,15 +771,15 @@
             statusVal.innerText = "Testing Upload...";
             
             setTimeout(() => {
-              uploadVal.innerText = (targetSpeed * 0.95).toFixed(1) + " Mbps";
+              uploadVal.innerText = (targetSpeed * 0.96).toFixed(1) + " Mbps";
               statusVal.innerText = "Completed";
               btn.disabled = false;
               btn.style.opacity = '1';
-            }, 1000);
+            }, 900);
           }
-        }, 80);
+        }, 70);
 
-      }, 800);
+      }, 700);
     }
 
     // Dynamic Circuit Background
