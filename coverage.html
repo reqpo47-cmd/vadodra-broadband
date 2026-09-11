@@ -3,112 +3,377 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coverage Area - Vadodara Broadband Wifi Wala</title>
+  <title>Coverage Area - Vadodara Broadband Fiber Network</title>
   <style>
-    :root { --bg-dark: #05070f; --card-bg: #0d1222; --cyan: #00f0ff; --purple: #7000ff; --green: #00ff66; --text: #e2e8f0; }
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
-    body { background-color: var(--bg-dark); color: var(--text); overflow-x: hidden; }
+    :root {
+      --bg-dark: #030712;
+      --card-bg: rgba(15, 23, 42, 0.75);
+      --accent-cyan: #00f2fe;
+      --accent-blue: #4facfe;
+      --accent-purple: #7928ca;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
 
-    nav { position: sticky; top: 0; background: rgba(5, 7, 15, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0, 240, 255, 0.2); display: flex; justify-content: space-between; align-items: center; padding: 18px 8%; z-index: 1000; }
-    .logo { font-size: 1.4rem; font-weight: 900; color: #fff; text-shadow: 0 0 10px var(--cyan); }
-    .logo span { color: var(--cyan); }
-    .nav-links { display: flex; gap: 25px; list-style: none; }
-    .nav-links a { color: var(--text); text-decoration: none; font-size: 0.95rem; font-weight: 600; transition: 0.3s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--cyan); text-shadow: 0 0 8px var(--cyan); }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
 
-    .btn-glow { background: linear-gradient(135deg, var(--cyan), var(--purple)); color: #fff; padding: 10px 22px; border-radius: 30px; text-decoration: none; font-weight: bold; box-shadow: 0 0 15px rgba(0, 240, 255, 0.4); transition: 0.3s; }
-    .btn-glow:hover { box-shadow: 0 0 25px rgba(0, 240, 255, 0.8); transform: scale(1.05); }
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(0, 242, 254, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(121, 40, 202, 0.15) 0%, transparent 45%);
+    }
 
-    .header-section { text-align: center; padding: 60px 8% 30px; }
-    .header-section h1 { font-size: 2.8rem; color: #fff; text-shadow: 0 0 15px var(--cyan); margin-bottom: 10px; }
-    
-    .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; padding: 20px 8% 60px; }
-    .area-card { background: var(--card-bg); border: 1px solid rgba(0, 240, 255, 0.2); border-radius: 12px; padding: 20px; text-align: center; font-size: 1.1rem; font-weight: bold; color: var(--cyan); box-shadow: 0 0 10px rgba(0, 240, 255, 0.1); }
-    .area-card:hover { transform: scale(1.05); border-color: var(--green); color: var(--green); box-shadow: 0 0 20px rgba(0, 255, 102, 0.3); }
+    canvas#circuit-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      pointer-events: none;
+    }
 
-    .whatsapp-btn { position: fixed; bottom: 25px; right: 25px; background: var(--green); color: #000; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 30px; box-shadow: 0 0 20px rgba(0, 255, 102, 0.6); text-decoration: none; z-index: 9999; }
-    footer { text-align: center; padding: 40px; border-top: 1px solid rgba(255,255,255,0.05); color: #64748b; }
-    /* Mobile & Tablet Responsive Fixes */
-@media (max-width: 768px) {
-  nav {
-    flex-direction: column;
-    gap: 15px;
-    padding: 15px 5%;
-    text-align: center;
-  }
+    /* Header Navbar */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 6%;
+      background: rgba(3, 7, 18, 0.85);
+      border-bottom: 1px solid rgba(0, 242, 254, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(16px);
+    }
 
-  .nav-links {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px 18px;
-  }
+    .logo {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      color: #fff;
+    }
 
-  .nav-links a {
-    font-size: 0.85rem;
-  }
+    .logo span {
+      color: var(--accent-cyan);
+      text-shadow: 0 0 12px rgba(0, 242, 254, 0.6);
+    }
 
-  .hero h1 {
-    font-size: 2.1rem;
-    line-height: 1.2;
-  }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 28px;
+    }
 
-  .hero p {
-    font-size: 1rem;
-  }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
 
-  .header-section h1 {
-    font-size: 2rem;
-  }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--accent-cyan);
+      text-shadow: 0 0 8px rgba(0, 242, 254, 0.4);
+    }
 
-  .grid-container {
-    grid-template-columns: 1fr;
-    padding: 15px 5% 40px;
-    gap: 20px;
-  }
+    .btn-glow {
+      background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-blue) 100%);
+      color: #000 !important;
+      padding: 10px 22px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 14px;
+      text-decoration: none;
+      box-shadow: 0 0 20px rgba(0, 242, 254, 0.35);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
 
-  .card {
-    padding: 20px;
-  }
+    .btn-glow:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(0, 242, 254, 0.7);
+    }
 
-  .form-container {
-    margin: 20px 15px;
-    padding: 25px 20px;
-  }
+    /* Header Banner */
+    .coverage-header {
+      text-align: center;
+      padding: 50px 20px 30px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
 
-.whatsapp-btn {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  background-color: #25D366;
-  color: #ffffff;
-  border-radius: 50%;
-  width: 55px;
-  height: 55px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  z-index: 9999;
-  text-decoration: none;
-  transition: transform 0.2s ease;
-}
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 242, 254, 0.08);
+      border: 1px solid rgba(0, 242, 254, 0.25);
+      padding: 6px 18px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      margin-bottom: 16px;
+    }
 
-.whatsapp-btn:hover {
-  transform: scale(1.1);
-}
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--accent-cyan);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent-cyan);
+      animation: pulse 1.5s infinite;
+    }
 
-.whatsapp-btn svg {
-  width: 30px;
-  height: 30px;
-  fill: #ffffff;
-}
-}
+    @keyframes pulse {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 242, 254, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 242, 254, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 242, 254, 0); }
+    }
+
+    .coverage-header h1 {
+      font-size: 42px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      background: linear-gradient(180deg, #ffffff 40%, var(--accent-cyan) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .coverage-header p {
+      color: var(--text-muted);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* Area Search Box */
+    .search-container {
+      max-width: 550px;
+      margin: 20px auto 40px;
+      padding: 0 20px;
+    }
+
+    .search-input {
+      width: 100%;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      padding: 14px 20px;
+      border-radius: 12px;
+      color: #fff;
+      font-size: 15px;
+      outline: none;
+      box-shadow: 0 0 15px rgba(0, 242, 254, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 25px rgba(0, 242, 254, 0.3);
+    }
+
+    /* Locations Grid Layout */
+    .locations-grid {
+      max-width: 1150px;
+      margin: 0 auto 50px;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .locations-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 580px) {
+      .locations-grid { grid-template-columns: 1fr; }
+    }
+
+    .location-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 22px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(12px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .location-card:hover, .location-card.active {
+      border-color: var(--accent-cyan);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0, 242, 254, 0.2);
+    }
+
+    .location-card.active {
+      background: linear-gradient(135deg, rgba(0, 242, 254, 0.12) 0%, rgba(15, 23, 42, 0.95) 100%);
+    }
+
+    .loc-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .loc-name {
+      font-size: 18px;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .loc-count {
+      font-size: 11px;
+      font-weight: 700;
+      background: rgba(0, 242, 254, 0.15);
+      color: var(--accent-cyan);
+      padding: 4px 10px;
+      border-radius: 20px;
+      border: 1px solid rgba(0, 242, 254, 0.3);
+    }
+
+    /* Area Details Modal / Drawer */
+    .details-drawer {
+      max-width: 1150px;
+      margin: 0 auto 70px;
+      padding: 0 20px;
+      display: none;
+    }
+
+    .details-drawer.active {
+      display: block;
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .details-box {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(3, 7, 18, 0.98) 100%);
+      border: 1px solid var(--accent-cyan);
+      border-radius: 20px;
+      padding: 35px;
+      box-shadow: 0 0 40px rgba(0, 242, 254, 0.2);
+      position: relative;
+    }
+
+    .details-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+    }
+
+    .details-title {
+      font-size: 26px;
+      font-weight: 900;
+      color: #fff;
+    }
+
+    .details-para {
+      color: #cbd5e1;
+      font-size: 15px;
+      line-height: 1.7;
+      margin-bottom: 25px;
+    }
+
+    .sub-locations-title {
+      font-size: 14px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent-cyan);
+      margin-bottom: 14px;
+    }
+
+    .sub-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    .sub-tag {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #f1f5f9;
+      padding: 8px 16px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 20px;
+      border-radius: 14px;
+      border: 1px solid rgba(0, 242, 254, 0.15);
+    }
+
+    @media (max-width: 600px) {
+      .stats-row { grid-template-columns: 1fr; }
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-num {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--accent-cyan);
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    footer {
+      margin-top: auto;
+      text-align: center;
+      padding: 28px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      color: #64748b;
+      font-size: 14px;
+      background: rgba(3, 7, 18, 0.95);
+    }
   </style>
 </head>
 <body>
 
+  <canvas id="circuit-bg"></canvas>
+
+  <!-- NAVBAR -->
   <nav>
-  <div class="logo">VADODARA<span>BROADBAND</span></div>
+    <div class="logo">VADODARA<span>BROADBAND</span></div>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="plans.html">Internet Plans</a></li>
@@ -117,36 +382,302 @@
       <li><a href="about.html">About Us</a></li>
       <li><a href="contact.html">Contact Us</a></li>
     </ul>
-    <a href="contact.html" class="btn-glow">Get Connection</a>
+    <button class="btn-glow" onclick="showAdminModal('General Coverage Inquiry')">Get Connection</button>
   </nav>
 
-  <div class="header-section">
+  <!-- HEADER -->
+  <section class="coverage-header">
+    <div class="badge">
+      <span class="pulse-dot"></span> Optical Fiber Grid Live Across Vadodara
+    </div>
     <h1>COVERAGE AREAS IN VADODARA</h1>
-    <p style="color: #94a3b8;">High Speed Optical Fiber Network Active Locations</p>
+    <p>We are rapidly expanding our high-speed optical fiber infrastructure. Click on your locality below to check detailed connectivity status, active connections, and covered sub-areas in Vadodara.</p>
+  </section>
+
+  <!-- SEARCH BOX -->
+  <div class="search-container">
+    <input type="text" id="areaSearch" class="search-input" placeholder="🔍 Type your Vadodara area (e.g. Alkapuri, Gotri, Vasna)..." onkeyup="filterAreas()">
   </div>
 
-  <div class="grid-container">
-    <div class="area-card">📍 Alkapuri</div>
-    <div class="area-card">📍 Gotri</div>
-    <div class="area-card">📍 Manjalpur</div>
-    <div class="area-card">📍 Sayajigunj</div>
-    <div class="area-card">📍 Vasna Road</div>
-    <div class="area-card">📍 Waghodia Road</div>
-    <div class="area-card">📍 Subhanpura</div>
-    <div class="area-card">📍 Karelibaug</div>
-    <div class="area-card">📍 Akota</div>
-    <div class="area-card">📍 Sama-Savli</div>
+  <!-- LOCATIONS GRID -->
+  <div class="locations-grid" id="locationsGrid">
+    <div class="location-card" onclick="selectArea('alkapuri')">
+      <div class="loc-head">
+        <span class="loc-name">📍 Alkapuri</span>
+        <span class="loc-count">650+ Active</span>
+      </div>
+    </div>
+
+    <div class="location-card" onclick="selectArea('gotri')">
+      <div class="loc-head">
+        <span class="loc-name">📍 Gotri</span>
+        <span class="loc-count">820+ Active</span>
+      </div>
+    </div>
+
+    <div class="location-card" onclick="selectArea('manjalpur')">
+      <div class="loc-head">
+        <span class="loc-name">📍 Manjalpur</span>
+        <span class="loc-count">740+ Active</span>
+      </div>
+    </div>
+
+    <div class="location-card" onclick="selectArea('sayajigunj')">
+      <div class="loc-head">
+        <span class="loc-name">📍 Sayajigunj</span>
+        <span class="loc-count">510+ Active</span>
+      </div>
+    </div>
+
+    <div class="location-card" onclick="selectArea('vasnaroad')">
+      <div class="loc-head">
+        <span class="loc-name">📍 Vasna Road</span>
+        <span class="loc-count">900+ Active</span>
+      </div>
+    </div>
+
+    <div class="location-card" onclick="selectArea('waghodia')">
+      <div class="loc-head">
+        <span class="loc-name">📍 Waghodia Road</span>
+        <span class="loc-count">680+ Active</span>
+      </div>
+    </div>
+
+    <div class="location-card" onclick="selectArea('subhanpura')">
+      <div class="loc-head">
+        <span class="loc-name">📍 Subhanpura</span>
+        <span class="loc-count">430+ Active</span>
+      </div>
+    </div>
+
+    <div class="location-card" onclick="selectArea('karelibaug')">
+      <div class="loc-head">
+        <span class="loc-name">📍 Karelibaug</span>
+        <span class="loc-count">880+ Active</span>
+      </div>
+    </div>
+
+    <div class="location-card" onclick="selectArea('akota')">
+      <div class="loc-head">
+        <span class="loc-name">📍 Akota</span>
+        <span class="loc-count">590+ Active</span>
+      </div>
+    </div>
+
+    <div class="location-card" onclick="selectArea('samasavli')">
+      <div class="loc-head">
+        <span class="loc-name">📍 Sama-Savli</span>
+        <span class="loc-count">710+ Active</span>
+      </div>
+    </div>
   </div>
 
-  <a href="https://wa.me/919510896157" class="whatsapp-btn" target="_blank" aria-label="Chat on WhatsApp">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-    <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3 18.6-68.1-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
-  </svg>
-</a>
+  <!-- AREA DETAILS DRAWER -->
+  <div class="details-drawer" id="detailsDrawer">
+    <div class="details-box">
+      <div class="details-header">
+        <div class="details-title" id="drawerTitle">Area Connectivity Status</div>
+        <button class="btn-glow" style="padding: 8px 18px; font-size:13px;" onclick="showAdminModal('Connection Request for ' + currentSelectedArea)">Book Connection Here</button>
+      </div>
+
+      <p class="details-para" id="drawerPara">Select a locality to view detailed network status.</p>
+
+      <div class="sub-locations-title">Covered Societies & Sub-Localities:</div>
+      <div class="sub-grid" id="drawerSubGrid"></div>
+
+      <div class="stats-row">
+        <div class="stat-item">
+          <div class="stat-num" id="statConn">0+</div>
+          <div class="stat-label">Active Fiber Users</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num" id="statPing">&lt; 6 ms</div>
+          <div class="stat-label">Average Vadodara Ping</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">100% FTTH</div>
+          <div class="stat-label">Optical Fiber Direct To Home</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT MODAL -->
+  <div style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); backdrop-filter:blur(12px); z-index:2500; display:none; justify-content:center; align-items:center; padding:20px;" id="adminModal">
+    <div style="background:#0b0f19; border:1px solid rgba(0,242,254,0.4); border-radius:24px; max-width:420px; width:100%; padding:35px; text-align:center; position:relative; box-shadow:0 0 50px rgba(0,242,254,0.25);">
+      <span style="position:absolute; top:16px; right:20px; font-size:24px; color:#94a3b8; cursor:pointer;" onclick="closePopup()">&times;</span>
+      <div style="font-size:40px; margin-bottom:10px;">🎧</div>
+      <h2 style="font-size: 22px; font-weight: 800; color:#fff;">Instant Installation</h2>
+      <p style="color: #94a3b8; font-size: 13px; margin-top: 6px;" id="selectedPlanTitle">Inquiry For: Fiber Connection</p>
+
+      <div style="background: rgba(7, 9, 14, 0.8); border: 1px solid rgba(0, 242, 254, 0.3); border-radius: 14px; padding: 16px; margin: 20px 0; display: flex; align-items: center; justify-content: space-between;">
+        <div style="font-size:20px; font-weight:800; color:var(--accent-cyan);">+91 9510896157</div>
+        <button style="background:rgba(0, 242, 254, 0.15); border:1px solid var(--accent-cyan); color:var(--accent-cyan); padding:6px 12px; border-radius:8px; cursor:pointer; font-weight:700;" onclick="navigator.clipboard.writeText('9510896157'); alert('Number Copied!');">Copy</button>
+      </div>
+
+      <a id="waBtn" href="https://wa.me/919510896157" target="_blank" style="display:block; background:#25d366; color:#fff; padding:14px; border-radius:12px; text-decoration:none; font-weight:700; box-shadow: 0 0 20px rgba(37, 211, 102, 0.35);">
+        💬 Chat on WhatsApp
+      </a>
+    </div>
+  </div>
 
   <footer>
-    <p>&copy; 2026 Vadodara Broadband Wifi Wala.</p>
+    &copy; 2026 Vadodara Broadband. High-Speed Optical Fiber Infrastructure.
   </footer>
 
+  <script>
+    let currentSelectedArea = "";
+
+    const areaData = {
+      alkapuri: {
+        title: "Alkapuri (Central Vadodara)",
+        conn: "650+",
+        para: "In Alkapuri, Vadodara Broadband provides enterprise-grade high-speed fiber infrastructure. Whether you are running a corporate office on R.C. Dutt Road or need seamless 4K gaming in residential societies near Express Hotel, our direct optical nodes ensure zero line-loss and ultra-low ping latency.",
+        subs: ["R.C. Dutt Road", "Productivity Road", "Express Tower Zone", "Aradhana Society", "Sampatrao Colony", "Jetalpur Road Border"]
+      },
+      gotri: {
+        title: "Gotri Road & New Gotri",
+        conn: "820+",
+        para: "Gotri is one of our largest fiber hubs in Vadodara. With ultra-dense residential complexes near Gotri Lake, Yash Complex, and Sevasi canal road, we have deployed high-bandwidth fiber splitters providing flawless 1:1 download-upload ratios for work-from-home pros and gamers alike.",
+        subs: ["Gotri Lake Circle", "Yash Complex Area", "Harikripa Society", "Gotri-Sevasi Road", "Gayatri Nagar", "Iscon Heights Sector"]
+      },
+      manjalpur: {
+        title: "Manjalpur & GIDC Commercial Zone",
+        conn: "740+",
+        para: "Serving both residential neighborhoods and industrial commercial units around Manjalpur, our Vadodara optical network delivers uninterrupted broadband with dedicated static IP support. Ideal for streaming, online classes, and business operations.",
+        subs: ["Eva Mall Sector", "Tarsali Bypass Border", "GIDC Manjalpur", "Deep Chambers Area", "Pramukh Swami Nagar", "Shreyas School Road"]
+      },
+      sayajigunj: {
+        title: "Sayajigunj (University & Tech Zone)",
+        conn: "510+",
+        para: "Located right next to MS University and Railway Station hubs in Vadodara, our Sayajigunj coverage guarantees high-speed student-friendly broadband packages with instant onboarding and ultra-stable connection stability.",
+        subs: ["MSU Campus Outer", "Kala Ghoda Circle", "Station Road", "Professor Colony", "Kadak Bazar Outer", "Sayaji Garden Marg"]
+      },
+      vasnaroad: {
+        title: "Vasna Road & Bhayli Border",
+        conn: "900+",
+        para: "Vasna Road represents our highest bandwidth density zone in western Vadodara. Our fiber optic lines run seamlessly across all major high-rise townships, delivering lag-free BGMI gaming and gigabit streaming capabilities.",
+        subs: ["Vasna-Bhayli Main Road", "Taksh Complex Zone", "Bright Day School Area", "Nilamber Palms Zone", "Ashwamegh Society", "D-Mart Vasna Outer"]
+      },
+      waghodia: {
+        title: "Waghodia Road & Colleges Zone",
+        conn: "680+",
+        para: "Connecting eastern Vadodara with ultra-fast optical internet. Waghodia Road features high-availability nodes ensuring smooth performance even during peak evening usage hours.",
+        subs: ["Parul University Corridor", "Soma Talav Circle", "Waghodia Cross Roads", "Prabhat Nagar", "L&T Knowledge City Outer", "Vaikunth Society"]
+      },
+      subhanpura: {
+        title: "Subhanpura & High Tension Road",
+        conn: "430+",
+        para: "Our Subhanpura network ring provides instant internet fiber connection for households, gaming setups, and local Vadodara shopkeepers with 24/7 priority engineer support.",
+        subs: ["Subhanpura High Tension Rd", "Ellora Park Border", "Jhansi ki Rani Garden Zone", "Anand Nagar", "Samta Area"]
+      },
+      karelibaug: {
+        title: "Karelibaug & Water Tank Area",
+        conn: "880+",
+        para: "Karelibaug is completely powered by our next-gen fiber optic grid in Vadodara. Residents around Water Tank and L&T Circle enjoy symmetric gigabit connectivity without any buffer lag.",
+        subs: ["Karelibaug Water Tank", "L&T Circle", "Sangat Plaza Area", "Muktanand Circle", "VIP Road Junction", "Ambalal Park"]
+      },
+      akota: {
+        title: "Akota Stadium & Bridge Area",
+        conn: "590+",
+        para: "Featuring direct low-latency routing to gaming servers in Mumbai, our Akota fiber line is trusted by competitive gamers and tech professionals across Akota Stadium and Dandia Bazar bridge route.",
+        subs: ["Akota Stadium Zone", "Productivity Road South", "Akota Bridge End", "Urmi Society", "BPC Road"]
+      },
+      samasavli: {
+        title: "Sama-Savli Road & VIP Corridor",
+        conn: "710+",
+        para: "Sama-Savli Road is connected with dedicated multi-gigabit backbones in Vadodara, offering high-speed mesh Wi-Fi 6 ready broadband setups for modern luxury apartments and offices.",
+        subs: ["Sama Lake Circle", "Abhilasha Square", "Savli Main Road", "Sama Canal Road", "Navrachana School Area"]
+      }
+    };
+
+    function selectArea(areaKey) {
+      const data = areaData[areaKey];
+      if (!data) return;
+
+      currentSelectedArea = data.title;
+
+      // Update Active Card Styles
+      document.querySelectorAll('.location-card').forEach(card => card.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+
+      // Populate Drawer
+      document.getElementById('drawerTitle').innerText = "📍 " + data.title;
+      document.getElementById('drawerPara').innerText = data.para;
+      document.getElementById('statConn').innerText = data.conn;
+
+      const subGrid = document.getElementById('drawerSubGrid');
+      subGrid.innerHTML = "";
+      data.subs.forEach(sub => {
+        const tag = document.createElement('span');
+        tag.className = 'sub-tag';
+        tag.innerText = "✓ " + sub;
+        subGrid.appendChild(tag);
+      });
+
+      // Show Drawer
+      const drawer = document.getElementById('detailsDrawer');
+      drawer.classList.add('active');
+      drawer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function filterAreas() {
+      const input = document.getElementById('areaSearch').value.toLowerCase();
+      const cards = document.querySelectorAll('.location-card');
+
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        if (text.includes(input)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    function showAdminModal(title) {
+      document.getElementById('selectedPlanTitle').innerText = "Inquiry For: " + title;
+      document.getElementById('waBtn').href = "https://wa.me/919510896157?text=" + encodeURIComponent("Hi Admin, I am inquiring about: " + title);
+      document.getElementById('adminModal').style.display = 'flex';
+    }
+
+    function closePopup() {
+      document.getElementById('adminModal').style.display = 'none';
+    }
+
+    // Dynamic Circuit BG
+    const canvas = document.getElementById('circuit-bg');
+    const ctx = canvas.getContext('2d');
+    function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    class Particle {
+      constructor() { this.reset(); }
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.length = Math.random() * 80 + 20;
+        this.speed = Math.random() * 1.5 + 0.5;
+        this.opacity = Math.random() * 0.3 + 0.1;
+      }
+      update() { this.y += this.speed; if (this.y > canvas.height) this.reset(); }
+      draw() {
+        ctx.beginPath();
+        ctx.moveTo(this.x, this.y);
+        ctx.lineTo(this.x, this.y + this.length);
+        ctx.strokeStyle = `rgba(0, 242, 254, ${this.opacity})`;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+    }
+    const particles = Array.from({ length: 25 }, () => new Particle());
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => { p.update(); p.draw(); });
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
 </body>
 </html>
