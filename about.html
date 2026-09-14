@@ -384,38 +384,11 @@
     </div>
   </div>
 
-  <!-- CONTACT MODAL -->
-  <div class="modal-overlay" id="adminModal">
-    <div class="modal-box">
-      <span class="modal-close-btn" onclick="closePopup()">&times;</span>
-      <div style="font-size:40px; margin-bottom:10px;">🎧</div>
-      <h2 style="font-size: 22px; font-weight: 800; color:#fff;">Contact Broadband Admin</h2>
-      <p style="color: #94a3b8; font-size: 13px; margin-top: 6px;">Get new connection or technical assistance in Vadodara.</p>
-
-      <div class="phone-display-box">
-        <div style="font-size:20px; font-weight:800; color:var(--accent-cyan);">+91 9510896157</div>
-        <button style="background:rgba(0, 242, 254, 0.15); border:1px solid var(--accent-cyan); color:var(--accent-cyan); padding:6px 12px; border-radius:8px; cursor:pointer; font-weight:700;" onclick="navigator.clipboard.writeText('9510896157'); alert('Number Copied!');">Copy</button>
-      </div>
-
-      <a id="waBtn" href="https://wa.me/919510896157" target="_blank" style="display:block; background:#25d366; color:#fff; padding:14px; border-radius:12px; text-decoration:none; font-weight:700; box-shadow: 0 0 20px rgba(37, 211, 102, 0.35);">
-        💬 Chat on WhatsApp
-      </a>
-    </div>
-  </div>
-
   <footer>
-    &copy; 2026 Vadodara Broadband Wifi Wala. All Rights Reserved.
-  </footer>
+  &copy; 2026 Vadodara Broadband Wifi Wala. All Rights Reserved.
+</footer>
 
-  <script>
-    function showAdminModal() {
-      document.getElementById('adminModal').classList.add('active');
-    }
-
-    function closePopup() {
-      document.getElementById('adminModal').classList.remove('active');
-    }
-  </script>
-  <script src="global-whatsapp.js"></script>
+<script src="global-whatsapp.js"></script>
+<script src="global-modal.js"></script>
 </body>
 </html>
