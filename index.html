@@ -330,6 +330,67 @@
       margin-bottom: 20px;
     }
 
+    /* Partner Brand Section */
+    .partners-section {
+      max-width: 1250px;
+      margin: 0 auto 80px;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .partners-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .partner-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(12px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .partner-card:hover {
+      border-color: var(--accent-cyan);
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px rgba(0, 242, 254, 0.2);
+    }
+
+    .partner-badge {
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      text-transform: uppercase;
+    }
+
+    /* Brand Specific Colors/Gradients */
+    .brand-jio { background: linear-gradient(135deg, #0f52ba, #00227b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .brand-airtel { background: linear-gradient(135deg, #ed1c24, #ff4b4b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .brand-gtpl { background: linear-gradient(135deg, #ff9900, #ff5500); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .brand-tataplay { background: linear-gradient(135deg, #e6007e, #990055); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .brand-bsnl { background: linear-gradient(135deg, #009933, #006622); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+    .partner-tag {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      background: rgba(0, 242, 254, 0.1);
+      padding: 4px 10px;
+      border-radius: 20px;
+      border: 1px solid rgba(0, 242, 254, 0.2);
+    }
+
     /* Live Ping Matrix */
     .ping-section {
       max-width: 1250px;
@@ -626,6 +687,51 @@
       <div class="segment-title">🏢 Enterprise Fiber For Offices</div>
       <div class="segment-desc">Dedicated high-speed connectivity with enterprise SLA uptime, static IP support, and multi-user load balancing for Vadodara businesses, IT offices & retail shops.</div>
       <button class="btn-glow" style="font-size:13px; padding:8px 20px;" onclick="showAdminModal('Commercial Office Connection')">Get Office Lease Line</button>
+    </div>
+  </section>
+
+  <!-- AUTHORIZED PARTNERS SECTION -->
+  <section class="partners-section">
+    <div class="section-head">
+      <h2>Authorized Network & Service Partners</h2>
+      <p>We deliver and manage official high-speed fiber plans from India's leading broadband networks</p>
+    </div>
+
+    <div class="partners-grid">
+      <!-- Airtel -->
+      <div class="partner-card">
+        <div class="partner-badge brand-airtel">airtel</div>
+        <div style="font-size: 13px; font-weight: 700; color: #fff;">Xstream Fiber</div>
+        <span class="partner-tag">Official Partner</span>
+      </div>
+
+      <!-- Jio -->
+      <div class="partner-card">
+        <div class="partner-badge brand-jio">JioFiber</div>
+        <div style="font-size: 13px; font-weight: 700; color: #fff;">True 5G Home</div>
+        <span class="partner-tag">Official Partner</span>
+      </div>
+
+      <!-- GTPL -->
+      <div class="partner-card">
+        <div class="partner-badge brand-gtpl">GTPL</div>
+        <div style="font-size: 13px; font-weight: 700; color: #fff;">Gigabit Fiber</div>
+        <span class="partner-tag">Regional Partner</span>
+      </div>
+
+      <!-- Tata Play -->
+      <div class="partner-card">
+        <div class="partner-badge brand-tataplay">TATA PLAY</div>
+        <div style="font-size: 13px; font-weight: 700; color: #fff;">Fiber Broadband</div>
+        <span class="partner-tag">Authorized Line</span>
+      </div>
+
+      <!-- BSNL -->
+      <div class="partner-card">
+        <div class="partner-badge brand-bsnl">BSNL</div>
+        <div style="font-size: 13px; font-weight: 700; color: #fff;">Bharat AirFiber</div>
+        <span class="partner-tag">Government Fiber</span>
+      </div>
     </div>
   </section>
 
