@@ -1,0 +1,84 @@
+/* GLOBAL RESPONSIVE FIXES FOR VADODARA BROADBAND */
+
+/* Mobile & Tablet Navigation Fix */
+@media screen and (max-width: 992px) {
+  nav {
+    flex-direction: column !important;
+    padding: 12px 15px !important;
+    gap: 10px !important;
+    height: auto !important;
+  }
+  
+  .logo {
+    font-size: 18px !important;
+    text-align: center !important;
+  }
+
+  .nav-links {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    width: 100% !important;
+  }
+
+  .nav-links a {
+    font-size: 13px !important;
+  }
+}
+
+/* Hero Section & Font Size Adjustments */
+@media screen and (max-width: 768px) {
+  h1, .hero-title, h1 span {
+    font-size: 26px !important;
+    line-height: 1.2 !important;
+    word-break: break-word !important;
+  }
+
+  h2 {
+    font-size: 20px !important;
+  }
+
+  .hero-subtitle, p {
+    font-size: 14px !important;
+    padding: 0 10px !important;
+  }
+
+  /* Comparison Table Mobile Fix */
+  .vs-table-wrapper {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .vs-table {
+    min-width: 550px !important; /* Mobile pe horizontal scroll enable karega */
+  }
+
+  .vs-table th, .vs-table td {
+    padding: 10px 12px !important;
+    font-size: 12px !important;
+  }
+
+  /* Grid and Flex Layouts on Mobile */
+  .features-grid, .cards-container, .grid-3-col {
+    grid-template-columns: 1fr !important;
+    gap: 15px !important;
+  }
+
+  .phone-display-box {
+    flex-direction: column !important;
+    gap: 10px !important;
+    text-align: center !important;
+  }
+}
+
+/* Tablet Optimizations */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  h1, .hero-title {
+    font-size: 38px !important;
+  }
+  
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
