@@ -7,7 +7,7 @@
   <style>
     :root {
       --bg-dark: #050b14;
-      --card-bg: rgba(15, 23, 42, 0.8);
+      --card-bg: rgba(15, 23, 42, 0.85);
       --accent-cyan: #00f2fe;
       --accent-blue: #4facfe;
       --text-main: #f8fafc;
@@ -99,7 +99,7 @@
     /* Hero Banner */
     .hero-banner {
       text-align: center;
-      padding: 60px 20px 30px;
+      padding: 50px 20px 20px;
     }
 
     .hero-banner h1 {
@@ -117,36 +117,52 @@
       font-size: 16px;
     }
 
-    /* Interactive Calculator Section */
-    .calc-container {
-      max-width: 800px;
+    /* Main Grid layout for Speed Estimator */
+    .calc-wrapper {
+      max-width: 1200px;
       margin: 20px auto 60px;
-      padding: 35px;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 30px;
+    }
+
+    @media (max-width: 968px) {
+      .calc-wrapper {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .calc-container {
       background: var(--card-bg);
       border: 1px solid rgba(0, 242, 254, 0.25);
       border-radius: 24px;
+      padding: 30px;
       backdrop-filter: blur(16px);
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
     }
 
     .calc-title {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 800;
       color: #fff;
-      margin-bottom: 25px;
-      text-align: center;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
     .slider-group {
-      margin-bottom: 30px;
+      margin-bottom: 24px;
     }
 
     .slider-label {
       display: flex;
       justify-content: space-between;
       font-weight: 700;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       color: #cbd5e1;
+      font-size: 14px;
     }
 
     .slider-label span {
@@ -163,26 +179,146 @@
       cursor: pointer;
     }
 
-    .result-box {
-      background: rgba(5, 11, 20, 0.7);
-      border: 1px dashed rgba(0, 242, 254, 0.4);
-      border-radius: 16px;
-      padding: 24px;
+    /* Interactive Preference Buttons */
+    .chip-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .chip-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 10px;
+      color: #cbd5e1;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
       text-align: center;
-      margin-top: 25px;
+      transition: all 0.25s ease;
+    }
+
+    .chip-btn:hover {
+      border-color: var(--accent-cyan);
+      background: rgba(0, 242, 254, 0.08);
+    }
+
+    .chip-btn.active {
+      background: rgba(0, 242, 254, 0.15);
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+      box-shadow: 0 0 15px rgba(0, 242, 254, 0.25);
+    }
+
+    /* Result Box & Technical Card */
+    .result-box {
+      background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(5, 11, 20, 0.95));
+      border: 1px solid rgba(0, 242, 254, 0.35);
+      border-radius: 24px;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 10px 40px rgba(0, 242, 254, 0.15);
     }
 
     .rec-speed {
-      font-size: 32px;
+      font-size: 42px;
       font-weight: 900;
       color: var(--accent-cyan);
-      margin-bottom: 6px;
+      text-shadow: 0 0 20px rgba(0, 242, 254, 0.5);
+      margin-bottom: 8px;
+      text-align: center;
     }
 
     .rec-desc {
       color: var(--text-muted);
       font-size: 14px;
+      line-height: 1.5;
       margin-bottom: 20px;
+      text-align: center;
+    }
+
+    /* Key Metrics Badge Table */
+    .tech-badges {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .badge-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      padding: 8px 0;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+    }
+    .badge-row:last-child { border-bottom: none; }
+    .badge-name { color: var(--text-muted); }
+    .badge-val { color: #fff; font-weight: 700; }
+
+    /* Accordion / Expandable details */
+    .accordion-trigger {
+      background: rgba(0, 242, 254, 0.08);
+      border: 1px solid rgba(0, 242, 254, 0.25);
+      color: var(--accent-cyan);
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 13px;
+      width: 100%;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s ease;
+      margin-bottom: 20px;
+    }
+
+    .accordion-trigger:hover {
+      background: rgba(0, 242, 254, 0.15);
+    }
+
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 12px;
+      padding: 0 16px;
+    }
+
+    .accordion-content.open {
+      max-height: 400px;
+      transition: max-height 0.5s ease-in-out;
+      padding: 16px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .spec-list {
+      list-style: none;
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .spec-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.4;
+    }
+
+    .spec-list li span {
+      color: var(--accent-cyan);
+      font-weight: bold;
     }
 
     /* Features Grid */
@@ -322,34 +458,91 @@
     <p>Find out exactly how much internet speed your home or office needs</p>
   </div>
 
-  <!-- SPEED CALCULATOR -->
-  <div class="calc-container">
-    <div class="calc-title">⚡ Estimate Your Recommended Speed</div>
+  <!-- MAIN CALCULATOR WRAPPER -->
+  <div class="calc-wrapper">
     
-    <div class="slider-group">
-      <div class="slider-label">
-        <span>Connected Devices:</span>
-        <span id="deviceVal">3 Devices</span>
+    <!-- LEFT INPUT SECTION -->
+    <div class="calc-container">
+      <div class="calc-title">⚙️ Configure Usage Profile</div>
+      
+      <!-- Sliders -->
+      <div class="slider-group">
+        <div class="slider-label">
+          <span>Connected Devices:</span>
+          <span id="deviceVal">3 Devices</span>
+        </div>
+        <input type="range" id="deviceSlider" min="1" max="20" value="3" oninput="updateCalculation()">
       </div>
-      <input type="range" id="deviceSlider" min="1" max="20" value="3" oninput="updateCalculation()">
+
+      <div class="slider-group">
+        <div class="slider-label">
+          <span>Primary Usage Level:</span>
+          <span id="usageVal">4K Streaming & WFH</span>
+        </div>
+        <input type="range" id="usageSlider" min="1" max="3" value="2" oninput="updateCalculation()">
+      </div>
+
+      <!-- Extra Interactive Category Buttons -->
+      <div class="slider-group">
+        <label class="slider-label">Select Key Priority Focus</label>
+        <div class="chip-grid" id="priorityChips">
+          <div class="chip-btn active" onclick="selectPriority(this, 'all')">🌐 All Rounder</div>
+          <div class="chip-btn" onclick="selectPriority(this, 'gaming')">🎮 Low Latency Esports</div>
+          <div class="chip-btn" onclick="selectPriority(this, 'work')">💼 WFH & Cloud Sync</div>
+        </div>
+      </div>
     </div>
 
-    <div class="slider-group">
-      <div class="slider-label">
-        <span>Primary Usage:</span>
-        <span id="usageVal">4K Video Streaming & Work</span>
-      </div>
-      <input type="range" id="usageSlider" min="1" max="3" value="2" oninput="updateCalculation()">
-    </div>
-
+    <!-- RIGHT DYNAMIC RESULT CARD -->
     <div class="result-box">
-      <div class="rec-speed" id="speedResult">⚡ 100 Mbps Recommended</div>
-      <div class="rec-desc" id="descResult">Ideal for smooth 4K Streaming, Online Gaming & Work From Home without lag.</div>
-      <button class="btn-glow" onclick="showAdminModal(document.getElementById('speedResult').innerText)">Inquire For This Speed</button>
+      <div>
+        <div style="font-size: 12px; text-transform: uppercase; color: var(--accent-cyan); font-weight: 800; letter-spacing: 1px; text-align: center; margin-bottom: 6px;">
+          Recommended Plan Configuration
+        </div>
+        <div class="rec-speed" id="speedResult">⚡ 100 Mbps</div>
+        <div class="rec-desc" id="descResult">Ideal for smooth 4K Streaming, Online Gaming & Work From Home without lag.</div>
+
+        <!-- Technical Metrics -->
+        <div class="tech-badges">
+          <div class="badge-row">
+            <span class="badge-name">Upload / Download Ratio</span>
+            <span class="badge-val" style="color:var(--accent-cyan);">1:1 Symmetric Speed</span>
+          </div>
+          <div class="badge-row">
+            <span class="badge-name">Included Wi-Fi Hardware</span>
+            <span class="badge-val" id="routerType">Dual-Band 5GHz Router</span>
+          </div>
+          <div class="badge-row">
+            <span class="badge-name">Data Limit</span>
+            <span class="badge-val">Truly Unlimited (No FUP)</span>
+          </div>
+        </div>
+
+        <!-- EXPANDABLE DETAILS ACCORDION -->
+        <button class="accordion-trigger" onclick="toggleDetails()">
+          <span>🔍 Technical Specs & Plan Details</span>
+          <span id="accIcon">▼</span>
+        </button>
+
+        <div class="accordion-content" id="detailsAccordion">
+          <ul class="spec-list">
+            <li><span>✓ Routing:</span> Direct Optical Node peering to Mumbai/Delhi gaming servers.</li>
+            <li><span>✓ Static IP:</span> Enterprise Static IP available on request for CCTV & VPN.</li>
+            <li><span>✓ Equipment:</span> High-gain Dual Band Gigabit optical ONT terminal included.</li>
+            <li><span>✓ Uptime SLA:</span> 99.9% network uptime backed by dual fiber redundancy.</li>
+            <li><span>✓ Support:</span> Priority local Vadodara tech team support with 2-hour SLA.</li>
+          </ul>
+        </div>
+      </div>
+
+      <button class="btn-glow" style="width:100%; padding:14px; font-size:15px;" onclick="showAdminModal(document.getElementById('speedResult').innerText)">
+        Inquire For This Speed
+      </button>
     </div>
+
   </div>
 
-  <!-- WHY CHOOSE US -->
+  <!-- WHY CHOOSE US (ORIGINAL FEATURES preserved) -->
   <div class="features-section">
     <div class="section-head">Why Vadodara Broadband Fiber?</div>
     <div class="features-grid">
@@ -375,7 +568,7 @@
     </div>
   </div>
 
-  <!-- ADMIN CONTACT MODAL -->
+  <!-- ADMIN CONTACT MODAL (ORIGINALpreserved) -->
   <div class="modal-overlay" id="adminModal">
     <div class="modal-box">
       <span class="modal-close-btn" onclick="closePopup()">&times;</span>
@@ -400,6 +593,14 @@
 
   <script>
     const usageTypes = ["Basic Browsing & Social Media", "4K Streaming & WFH", "Heavy Gaming & Multi-User 4K"];
+    let selectedPriority = 'all';
+
+    function selectPriority(el, type) {
+      document.querySelectorAll('#priorityChips .chip-btn').forEach(btn => btn.classList.remove('active'));
+      el.classList.add('active');
+      selectedPriority = type;
+      updateCalculation();
+    }
 
     function updateCalculation() {
       const devCount = parseInt(document.getElementById('deviceSlider').value);
@@ -410,17 +611,33 @@
 
       let speed = "40 Mbps";
       let desc = "Great for basic browsing, social media, and SD video streaming on a few devices.";
+      let router = "Dual-Band Wi-Fi Router";
 
-      if (devCount > 8 || usageType === 3) {
+      if (devCount > 8 || usageType === 3 || selectedPriority === 'gaming') {
         speed = "200 Mbps";
-        desc = "Perfect for heavy multi-device 4K streaming, gaming setups, and large families.";
-      } else if (devCount > 3 || usageType === 2) {
+        desc = "Perfect for heavy multi-device 4K streaming, low-latency BGMI/Valorant gaming setups, and large families.";
+        router = "Wi-Fi 6 Mesh Ready Router";
+      } else if (devCount > 3 || usageType === 2 || selectedPriority === 'work') {
         speed = "100 Mbps";
         desc = "Ideal for smooth 4K Streaming, Online Gaming & Work From Home without lag.";
+        router = "High-Gain Dual-Band 5GHz";
       }
 
-      document.getElementById('speedResult').innerText = `⚡ ${speed} Recommended`;
+      document.getElementById('speedResult').innerText = `⚡ ${speed}`;
       document.getElementById('descResult').innerText = desc;
+      document.getElementById('routerType').innerText = router;
+    }
+
+    function toggleDetails() {
+      const content = document.getElementById('detailsAccordion');
+      const icon = document.getElementById('accIcon');
+      if (content.classList.contains('open')) {
+        content.classList.remove('open');
+        icon.innerText = "▼";
+      } else {
+        content.classList.add('open');
+        icon.innerText = "▲";
+      }
     }
 
     function showAdminModal(title) {
