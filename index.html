@@ -421,7 +421,7 @@
     }
 
     .modal-overlay.active {
-      display: flex;
+      display: flex !important;
     }
 
     .speedtest-modal-box {
@@ -672,7 +672,7 @@
     <div class="speedtest-modal-box">
       <span class="close-btn" onclick="closeSpeedTestModal()">&times;</span>
       <h3 style="font-size: 22px; font-weight: 800; color: #fff;">Live Speed Meter</h3>
-      <p style="color: var(--text-muted); font-size: 13px; margin-top: 4px;">Simulating route to Vadodara Fiber Node</p>
+      <p style="color: var(--text-muted); font-size: 13px; margin-top: 4px;" id="modalTestStatus">Simulating route to Vadodara Fiber Node</p>
 
       <div class="gauge-container">
         <div class="speed-number" id="modalSpeedVal">0.0</div>
@@ -716,36 +716,7 @@
       </a>
     </div>
   </div>
-<!-- LIVE SPEED TEST POPUP MODAL -->
-<div id="speedModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(3,7,18,0.92); backdrop-filter:blur(15px); z-index:9999; justify-content:center; align-items:center; padding:20px;">
-  <div style="background:#090d16; border:1px solid rgba(0,242,254,0.4); border-radius:24px; width:100%; max-width:480px; padding:35px 25px; text-align:center; position:relative; box-shadow:0 0 50px rgba(0,242,254,0.3); font-family:sans-serif;">
-    <span onclick="closeSpeedTest()" style="position:absolute; top:15px; right:20px; font-size:26px; color:#94a3b8; cursor:pointer;">&times;</span>
-    <h3 style="color:#fff; font-size:20px; font-weight:800; margin-bottom:4px;">LIVE SPEED TEST</h3>
-    <p style="color:#94a3b8; font-size:12px; margin-bottom:20px;" id="testStatus">Connected to Vadodara Broadband Fiber</p>
 
-    <div id="gaugeOuter" style="width:170px; height:170px; border-radius:50%; border:6px solid rgba(0,242,254,0.15); border-top-color:#00f2fe; margin:0 auto 20px; display:flex; flex-direction:column; justify-content:center; align-items:center;">
-      <div id="liveSpeedNum" style="font-size:42px; font-weight:900; color:#00f2fe; line-height:1;">0.0</div>
-      <div style="font-size:12px; color:#94a3b8; font-weight:700; margin-top:4px;">Mbps</div>
-    </div>
-
-    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px; background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:14px;">
-      <div>
-        <div style="font-size:11px; color:#94a3b8; text-transform:uppercase;">Ping</div>
-        <div id="valPing" style="font-size:16px; font-weight:800; color:#fff; margin-top:4px;">-- ms</div>
-      </div>
-      <div>
-        <div style="font-size:11px; color:#94a3b8; text-transform:uppercase;">Download</div>
-        <div id="valDownload" style="font-size:16px; font-weight:800; color:#fff; margin-top:4px;">-- Mbps</div>
-      </div>
-      <div>
-        <div style="font-size:11px; color:#94a3b8; text-transform:uppercase;">Upload</div>
-        <div id="valUpload" style="font-size:16px; font-weight:800; color:#fff; margin-top:4px;">-- Mbps</div>
-      </div>
-    </div>
-
-    <button id="startTestBtn" onclick="runRealSpeedTest()" style="margin-top:20px; background:linear-gradient(135deg, #00f2fe 0%, #4facfe 100%); color:#000; border:none; padding:12px 28px; border-radius:10px; font-weight:800; font-size:14px; cursor:pointer; width:100%;">Start Live Test 🚀</button>
-  </div>
-</div>
   <footer>
     &copy; 2026 Vadodara Broadband. High-Speed Optical Fiber Infrastructure.
   </footer>
@@ -761,59 +732,80 @@
       document.getElementById('adminModal').classList.remove('active');
     }
 
-    // Speed Test Modal Logic
+    // Speed Test Modal Controls
+    function openSpeedTestModal() {
+      document.getElementById('speedTestModal').classList.add('active');
+    }
+
     function openSpeedTest() {
-      document.getElementById('speedModal').style.display = 'flex';
+      openSpeedTestModal();
+    }
+
+    function closeSpeedTestModal() {
+      document.getElementById('speedTestModal').classList.remove('active');
+      resetModalGauge();
     }
 
     function closeSpeedTest() {
-      document.getElementById('speedModal').style.display = 'none';
-      resetGauge();
+      closeSpeedTestModal();
     }
 
-    function resetGauge() {
-      document.getElementById('liveSpeedNum').innerText = "0.0";
-      document.getElementById('valPing').innerText = "-- ms";
-      document.getElementById('valDownload').innerText = "-- Mbps";
-      document.getElementById('valUpload').innerText = "-- Mbps";
-      document.getElementById('testStatus').innerText = "Click Start to test current Wi-Fi speed";
-      document.getElementById('startTestBtn').innerText = "Start Live Test 🚀";
-      document.getElementById('startTestBtn').disabled = false;
+    function resetModalGauge() {
+      document.getElementById('modalSpeedVal').innerText = "0.0";
+      document.getElementById('modalPingVal').innerText = "-- ms";
+      document.getElementById('modalUploadVal').innerText = "-- Mbps";
+      document.getElementById('modalStatusVal').innerText = "Idle";
+      document.getElementById('modalTestStatus').innerText = "Simulating route to Vadodara Fiber Node";
+      const btn = document.getElementById('modalStartBtn');
+      btn.innerText = "⚡ Run Speed Test";
+      btn.disabled = false;
     }
 
-    async function runRealSpeedTest() {
-      const btn = document.getElementById('startTestBtn');
-      const status = document.getElementById('testStatus');
+    async function runModalSpeedTest() {
+      const btn = document.getElementById('modalStartBtn');
+      const statusLbl = document.getElementById('modalStatusVal');
+      const testStatus = document.getElementById('modalTestStatus');
+      
       btn.disabled = true;
       btn.innerText = "Testing...";
+      statusLbl.innerText = "Testing Ping";
+      testStatus.innerText = "Checking Ping...";
 
-      status.innerText = "Checking Ping...";
       const startPing = performance.now();
-      try { await fetch('https://www.cloudflare.com/cdn-cgi/trace', { cache: 'no-store' }); } catch(e){}
+      try { 
+        await fetch('https://www.cloudflare.com/cdn-cgi/trace', { cache: 'no-store' }); 
+      } catch(e){}
       const ping = Math.round(performance.now() - startPing);
-      document.getElementById('valPing').innerText = (ping > 60 ? 12 : ping) + " ms";
+      const finalPing = ping > 60 ? 12 : ping;
+      document.getElementById('modalPingVal').innerText = finalPing + " ms";
 
-      status.innerText = "Testing Download Speed...";
+      statusLbl.innerText = "Downloading";
+      testStatus.innerText = "Testing Download Speed...";
       let dlSpeed = 0;
       for (let i = 1; i <= 15; i++) {
         await new Promise(r => setTimeout(r, 80));
         dlSpeed = (Math.random() * 40 + 60).toFixed(1);
-        document.getElementById('liveSpeedNum').innerText = dlSpeed;
+        document.getElementById('modalSpeedVal').innerText = dlSpeed;
       }
-      document.getElementById('valDownload').innerText = dlSpeed + " Mbps";
 
-      status.innerText = "Testing Upload Speed...";
+      statusLbl.innerText = "Uploading";
+      testStatus.innerText = "Testing Upload Speed...";
       let ulSpeed = 0;
       for (let i = 1; i <= 15; i++) {
         await new Promise(r => setTimeout(r, 80));
         ulSpeed = (Math.random() * 30 + 50).toFixed(1);
-        document.getElementById('liveSpeedNum').innerText = ulSpeed;
+        document.getElementById('modalSpeedVal').innerText = ulSpeed;
       }
-      document.getElementById('valUpload').innerText = ulSpeed + " Mbps";
+      document.getElementById('modalUploadVal').innerText = ulSpeed + " Mbps";
 
-      status.innerText = "✅ Speed Test Complete!";
+      statusLbl.innerText = "Complete";
+      testStatus.innerText = "✅ Speed Test Complete!";
       btn.innerText = "Test Again 🔄";
       btn.disabled = false;
+    }
+
+    function runRealSpeedTest() {
+      runModalSpeedTest();
     }
 
     // Dynamic Circuit Background
